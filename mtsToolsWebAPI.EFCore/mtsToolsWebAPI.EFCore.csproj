@@ -49,10 +49,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityFrameworkCore\EFCoreContext.cs" />
+    <Compile Include="EntityFrameworkCore\MtsGroupPermissionMapping.cs" />
+    <Compile Include="EntityFrameworkCore\MtsPermissionGroup.cs" />
+    <Compile Include="EntityFrameworkCore\MtsSoftwareInfo.cs" />
     <Compile Include="EntityFrameworkCore\MtsAccountInfo.cs" />
     <Compile Include="EntityFrameworkCore\MtsDeviceModelInfo.cs" />
     <Compile Include="EntityFrameworkCore\MtsMenuInfo.cs" />
     <Compile Include="EntityFrameworkCore\MtsScheduleWorkOrder.cs" />
+    <Compile Include="EntityFrameworkCore\MtsUserGroupMapping.cs" />
     <Compile Include="Migrations\201903260804023_Initial.cs" />
     <Compile Include="Migrations\201903260804023_Initial.Designer.cs">
       <DependentUpon>201903260804023_Initial.cs</DependentUpon>
@@ -68,6 +72,34 @@
     <Compile Include="Migrations\201904120733523_Initial3.cs" />
     <Compile Include="Migrations\201904120733523_Initial3.Designer.cs">
       <DependentUpon>201904120733523_Initial3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905050234101_Initial4.cs" />
+    <Compile Include="Migrations\201905050234101_Initial4.Designer.cs">
+      <DependentUpon>201905050234101_Initial4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905050359215_Initial5.cs" />
+    <Compile Include="Migrations\201905050359215_Initial5.Designer.cs">
+      <DependentUpon>201905050359215_Initial5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905060215574_Initial6.cs" />
+    <Compile Include="Migrations\201905060215574_Initial6.Designer.cs">
+      <DependentUpon>201905060215574_Initial6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905060222490_Initial7.cs" />
+    <Compile Include="Migrations\201905060222490_Initial7.Designer.cs">
+      <DependentUpon>201905060222490_Initial7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905060551112_Initial8.cs" />
+    <Compile Include="Migrations\201905060551112_Initial8.Designer.cs">
+      <DependentUpon>201905060551112_Initial8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905060718417_Initial9.cs" />
+    <Compile Include="Migrations\201905060718417_Initial9.Designer.cs">
+      <DependentUpon>201905060718417_Initial9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905060723428_Initial10.cs" />
+    <Compile Include="Migrations\201905060723428_Initial10.Designer.cs">
+      <DependentUpon>201905060723428_Initial10.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,9 +117,32 @@
     <EmbeddedResource Include="Migrations\201904120733523_Initial3.resx">
       <DependentUpon>201904120733523_Initial3.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905050234101_Initial4.resx">
+      <DependentUpon>201905050234101_Initial4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905050359215_Initial5.resx">
+      <DependentUpon>201905050359215_Initial5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905060215574_Initial6.resx">
+      <DependentUpon>201905060215574_Initial6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905060222490_Initial7.resx">
+      <DependentUpon>201905060222490_Initial7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905060551112_Initial8.resx">
+      <DependentUpon>201905060551112_Initial8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905060718417_Initial9.resx">
+      <DependentUpon>201905060718417_Initial9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905060723428_Initial10.resx">
+      <DependentUpon>201905060723428_Initial10.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -64,5 +64,6 @@ namespace mtsToolsWebAPI.Controllers
             Expression<Func<QueryCondition<MtsAccountInfo>, bool>> whereQueryCondition = EFExpressionHelper.GenerateFullQueryExpression<QueryCondition<MtsAccountInfo>>(queryCondition);
             return _userDetailRepository.GetAll() as List<MtsAccountInfo>;
         }
+
     }
 }
