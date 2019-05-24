@@ -35,8 +35,6 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
         [Required]
         [StringLength(5)]
         public string IsService { get; set; } // 是否在职 0NU // 1SV
-        [Required]
-        public MtsPermissionGroup MtsPermissionGroup { get; set; }
     }
 
     public class MtsAccountInfoMap: EntityTypeConfiguration<MtsAccountInfo>

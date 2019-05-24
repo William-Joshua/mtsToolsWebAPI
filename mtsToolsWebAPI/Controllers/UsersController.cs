@@ -1,6 +1,8 @@
 ﻿using mtsToolsWebAPI.Common;
 using mtsToolsWebAPI.EFCore.EntityFrameworkCore;
+using mtsToolsWebAPI.Model;
 using mtsToolsWebAPI.Repositories;
+using mtsToolsWebAPI.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -31,38 +33,71 @@ namespace mtsToolsWebAPI.Controllers
         /// 获得用户信息列表
         /// </summary>
         /// <returns></returns>
-        [HttpPost]
-        public IQueryable<MtsAccountInfo> GetUserDetailList()
+        private IQueryable<MtsAccountInfo> GetUserDetailList()
         {
                 return _userDetailRepository.GetAll();
+        }
+
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="userAccount">用户账号</param>
+        /// <returns></returns>
+        [HttpPost]
+        public bool VerifyUserAccount([FromBody] UserAccount userAccount )
+        {
+            try
+            {
+                MtsAccountInfo mtsAccountInfo = new MtsAccountInfo();
+                mtsAccountInfo.UserID = userAccount.Account;
+                PassWordHelper passWordHelper = new PassWordHelper(userAccount.PassWord);
+                mtsAccountInfo.PassWord = passWordHelper.CrtPassWord();
+                ServiceResponse serviceResponse = _userDetailRepository.GetModelQuery(mtsAccountInfo);
+                List<MtsAccountInfo> mtsAccountInfos = serviceResponse.Results as List<MtsAccountInfo>;
+                bool isVaildUser = mtsAccountInfos.Where(user => user.UserID == mtsAccountInfo.UserID && user.PassWord == mtsAccountInfo.PassWord&& user.IsService == "1SV").Count() == 1 ? true : false;
+                return isVaildUser;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         /// <summary>
         /// 根据用户ID获取用户详细信息
         /// </summary>
         /// <param name="userID">用户ID</param>
         /// <returns></returns>
-        [HttpPost]
-        public  MtsAccountInfo GetUserDetailByUserID(string userID)
+        [HttpGet]
+        public  MtsAccountInfo GetUserDetailByUserID([FromUri] string userID)
         {
-            MtsAccountInfo mtsAccountInfo = new MtsAccountInfo();
-            mtsAccountInfo.UserID = userID;
-
-            ServiceResponse  serviceResponse =  _userDetailRepository.GetModelQuery(mtsAccountInfo);
-
-            List<MtsAccountInfo> mtsAccountInfos = serviceResponse.Results as List<MtsAccountInfo>;
-            return mtsAccountInfos.FirstOrDefault();
+            try
+            {
+                MtsAccountInfo mtsAccountInfo = new MtsAccountInfo
+                {
+                    UserID = userID
+                };
+                ServiceResponse serviceResponse = _userDetailRepository.GetModelQuery(mtsAccountInfo);
+                List<MtsAccountInfo> mtsAccountInfos = serviceResponse.Results as List<MtsAccountInfo>;
+                return mtsAccountInfos.Where(user => user.UserID == mtsAccountInfo.UserID).FirstOrDefault();
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
-
         /// <summary>
-        /// 过滤条件
+        /// 根据用户与平台获取菜单
         /// </summary>
-        /// <param name="queryCondition">过滤条件</param>
+        /// <param name="userAccessRequest">用户与平台</param>
         /// <returns></returns>
         [HttpPost]
-        public List<MtsAccountInfo> GetUserDetailsList(QueryCondition<MtsAccountInfo> queryCondition)
+        public List<UserMenuItem> GetUserMenuTree([FromBody] UserAccessRequest userAccessRequest)
         {
-            Expression<Func<QueryCondition<MtsAccountInfo>, bool>> whereQueryCondition = EFExpressionHelper.GenerateFullQueryExpression<QueryCondition<MtsAccountInfo>>(queryCondition);
-            return _userDetailRepository.GetAll() as List<MtsAccountInfo>;
+            List<UserMenuItem> userMenuTree = new List<UserMenuItem>();
+            UserService userService = new UserService();
+            userMenuTree = userService.GetUserMenuTree(userAccessRequest);
+            return userMenuTree;
         }
 
     }

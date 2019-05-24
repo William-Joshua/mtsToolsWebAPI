@@ -320,6 +320,10 @@
       <Project>{8f7dc587-af7e-480a-b212-e4c0e002d402}</Project>
       <Name>mtsToolsWebAPI.Repositories</Name>
     </ProjectReference>
+    <ProjectReference Include="..\mtsToolsWebAPI.Services\mtsToolsWebAPI.Services.csproj">
+      <Project>{b8bf26ce-7f2b-4d00-872c-061d701be146}</Project>
+      <Name>mtsToolsWebAPI.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -56,13 +56,5 @@ namespace mtsToolsWebAPI.Common
             else
                 return binaryExpression;
         }
-
-        public static Expression<Func<QueryCondition, bool>> GenerateFullQueryExpression<QueryCondition>(QueryCondition queryCondition)
-        {
-            List<MethodCallExpression> methodCallExpressions = new List<MethodCallExpression>();
-            Type type = queryCondition.GetType();
-            return null;
-        }
-
     }
 }

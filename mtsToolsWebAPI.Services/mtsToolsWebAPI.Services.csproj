@@ -4,16 +4,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{350E016B-BE4F-465E-82F7-F3A130F44C4E}</ProjectGuid>
+    <ProjectGuid>{B8BF26CE-7F2B-4D00-872C-061D701BE146}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>mtsToolsWebAPI.Common</RootNamespace>
-    <AssemblyName>mtsToolsWebAPI.Common</AssemblyName>
+    <RootNamespace>mtsToolsWebAPI.Services</RootNamespace>
+    <AssemblyName>mtsToolsWebAPI.Services</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +25,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,10 +33,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EasyEncryption, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\EasyEncryption.1.0.2\lib\EasyEncryption.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,14 +47,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EFExpressionHelper.cs" />
-    <Compile Include="PassWordHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryObjectSpan.cs" />
-    <Compile Include="ServiceResponse.cs" />
+    <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\mtsToolsWebAPI.Common\mtsToolsWebAPI.Common.csproj">
+      <Project>{350e016b-be4f-465e-82f7-f3a130f44c4e}</Project>
+      <Name>mtsToolsWebAPI.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\mtsToolsWebAPI.EFCore\mtsToolsWebAPI.EFCore.csproj">
+      <Project>{bdd74dcd-fc84-4c44-a95d-3a742d391cfd}</Project>
+      <Name>mtsToolsWebAPI.EFCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\mtsToolsWebAPI.Factories\mtsToolsWebAPI.Factories.csproj">
+      <Project>{166e0db5-4b64-4c0b-b67b-41ca61ef04fe}</Project>
+      <Name>mtsToolsWebAPI.Factories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\mtsToolsWebAPI.Model\mtsToolsWebAPI.Model.csproj">
+      <Project>{0fbddb27-f779-4157-9cda-21c93303007a}</Project>
+      <Name>mtsToolsWebAPI.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\mtsToolsWebAPI.Repositories\mtsToolsWebAPI.Repositories.csproj">
+      <Project>{8f7dc587-af7e-480a-b212-e4c0e002d402}</Project>
+      <Name>mtsToolsWebAPI.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
