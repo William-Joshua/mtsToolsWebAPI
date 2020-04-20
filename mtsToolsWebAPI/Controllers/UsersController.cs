@@ -68,22 +68,28 @@ namespace mtsToolsWebAPI.Controllers
         /// </summary>
         /// <param name="userID">用户ID</param>
         /// <returns></returns>
-        [HttpGet]
-        public  MtsAccountInfo GetUserDetailByUserID([FromUri] string userID)
+        [HttpPost]
+        public WebAPIReponseResult GetUserDetailByUserID([FromBody] UserAccount userAccount)
         {
             try
             {
                 MtsAccountInfo mtsAccountInfo = new MtsAccountInfo
                 {
-                    UserID = userID
+                    UserID = userAccount.Account
                 };
                 ServiceResponse serviceResponse = _userDetailRepository.GetModelQuery(mtsAccountInfo);
                 List<MtsAccountInfo> mtsAccountInfos = serviceResponse.Results as List<MtsAccountInfo>;
-                return mtsAccountInfos.Where(user => user.UserID == mtsAccountInfo.UserID).FirstOrDefault();
+
+                mtsAccountInfo =mtsAccountInfos.Where(user => user.UserID == mtsAccountInfo.UserID).FirstOrDefault();
+                return new WebAPIReponseResult(HttpStatusCode.OK,"OK",JsonConvert.DeserializeObject<Dictionary<string,dynamic>>(JsonConvert.SerializeObject(mtsAccountInfo))) ;
+            }
+            catch(HttpResponseException)
+            {
+                throw;
             }
             catch (Exception exception)
             {
-                throw exception;
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.InternalServerError) { Content = new StringContent(exception.Message) });
             }
         }
         /// <summary>

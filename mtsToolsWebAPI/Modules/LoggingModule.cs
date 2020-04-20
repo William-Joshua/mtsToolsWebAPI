@@ -44,18 +44,18 @@ namespace mtsToolsWebAPI.Modules
               });
         }
 
-        /// <summary>
-        /// 附件组件注册
-        /// </summary>
-        /// <param name="componentRegistry"></param>
-        /// <param name="registration"></param>
-        protected override void AttachToComponentRegistration(IComponentRegistry componentRegistry, IComponentRegistration registration)
-        {
-            // Handle constructor parameters.
-            registration.Preparing += OnComponentPreparing;
+        ///// <summary>
+        ///// 附件组件注册
+        ///// </summary>
+        ///// <param name="componentRegistry"></param>
+        ///// <param name="registration"></param>
+        //protected override void AttachToComponentRegistration(IComponentRegistry componentRegistry, IComponentRegistration registration)
+        //{
+        //    // Handle constructor parameters.
+        //    registration.Preparing += OnComponentPreparing;
 
-            // Handle properties.
-            registration.Activated += (sender, e) => InjectLoggerProperties(e.Instance);
-        }
+        //    // Handle properties.
+        //    registration.Activated += (sender, e) => InjectLoggerProperties(e.Instance);
+        //}
     }
 }
