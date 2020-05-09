@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mtsToolsWebAPI.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,7 +14,7 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
     /// 员工基本信息登记表
     /// </summary>
     [Table("MtsAccountInfo")]
-    public class MtsAccountInfo
+    public class MtsAccountInfo: GenericModel
     {
         [Key]
         [StringLength(64)]

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mtsToolsWebAPI.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,7 +14,7 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
     /// 用户与用户组映射关系
     /// </summary>
     [Table("MtsUserGroupMapping")]
-    public class MtsUserGroupMapping
+    public class MtsUserGroupMapping : GenericModel
     {
         [Key]
         [StringLength(64)]

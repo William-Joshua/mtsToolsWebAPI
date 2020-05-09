@@ -30,20 +30,20 @@ namespace mtsToolsWebAPI.Repositories
                 Select(
                 menutree => new
                 {
-                    InnerUserID = menutree.mai.InnerUserID,
-                    UserID = menutree.mai.UserID,
-                    InnerGroupID = menutree.mugmMapping.mgpMapping.mpg.InnerGroupID,
-                    GroupName = menutree.mugmMapping.mgpMapping.mpg.GroupName,
-                    GroupAlias = menutree.mugmMapping.mgpMapping.mpg.GroupAlias,
-                    InnerMenuID = menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.InnerMenuID,
-                    MenuName = menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.MenuName,
-                    MenuTitle = menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.MenuTitle,
-                    MenuParentID = menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.MenuParentID,
-                    MenuGroup = menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.MenuGroup,
-                    MenuComponent = menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.MenuComponent,
-                    MenuIcon = menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.MenuIcon,
-                    SoftwareAlias = menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.SoftwareAlias,
-                    MenuWeight = menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.MenuWeight
+                    menutree.mai.InnerUserID,
+                    menutree.mai.UserID,
+                    menutree.mugmMapping.mgpMapping.mpg.InnerGroupID,
+                    menutree.mugmMapping.mgpMapping.mpg.GroupName,
+                    menutree.mugmMapping.mgpMapping.mpg.GroupAlias,
+                    menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.InnerMenuID,
+                    menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.MenuName,
+                    menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.MenuTitle,
+                    menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.MenuParentID,
+                    menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.MenuGroup,
+                    menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.MenuComponent,
+                    menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.MenuIcon,
+                    menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.SoftwareAlias,
+                    menutree.mugmMapping.mgpMapping.mgpmMapping.mmi.MenuWeight
                 }).ToList();
 
             var userMenuTree = menuInfoList
@@ -53,13 +53,13 @@ namespace mtsToolsWebAPI.Repositories
                 .Select(tree => new
                 {
                     MenuID = tree.InnerMenuID,
-                    MenuName = tree.MenuName,
-                    MenuTitle = tree.MenuTitle,
-                    MenuParentID = tree.MenuParentID,
-                    MenuGroup = tree.MenuGroup,
-                    MenuComponent = tree.MenuComponent,
-                    MenuIcon = tree.MenuIcon,
-                    MenuWeight = tree.MenuWeight
+                    tree.MenuName,
+                    tree.MenuTitle,
+                    tree.MenuParentID,
+                    tree.MenuGroup,
+                    tree.MenuComponent,
+                    tree.MenuIcon,
+                    tree.MenuWeight
                 }).ToList();
             List<UserMenuItem> userMenuItems = new List<UserMenuItem>();
             foreach (var menuitem in userMenuTree)

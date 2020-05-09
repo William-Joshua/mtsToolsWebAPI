@@ -9,7 +9,7 @@ namespace mtsToolsWebAPI.Model
 {
     public class WebAPIReponseResult
     {
-        public HttpStatusCode ReponseStausCode { get; set; } = HttpStatusCode.OK;
+        public HttpStatusCode ReponseStatusCode { get; set; } = HttpStatusCode.OK;
 
         public string ReponseMessage { get; set; }
 
@@ -17,14 +17,14 @@ namespace mtsToolsWebAPI.Model
         
         public WebAPIReponseResult(HttpStatusCode statusCode, string reponseMsg)
         {
-            this.ReponseStausCode = statusCode;
+            this.ReponseStatusCode = statusCode;
             this.ReponseMessage = reponseMsg;
             this.ResposeDataExtend = null;
         }
 
         public WebAPIReponseResult(HttpStatusCode statusCode,string reponseMsg,Dictionary<string, dynamic> resposeData)
         {
-            this.ReponseStausCode = statusCode;
+            this.ReponseStatusCode = statusCode;
             this.ReponseMessage = reponseMsg;
             this.ResposeDataExtend = resposeData;
         }

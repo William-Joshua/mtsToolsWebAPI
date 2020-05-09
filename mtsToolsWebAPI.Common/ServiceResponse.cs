@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,23 +13,22 @@ namespace mtsToolsWebAPI.Common
     [Serializable]
     public class ServiceResponse
     {
-        private bool success = false;
-        private string errorCode = "";
-
         /// <summary>
         /// Result Message
         /// </summary>
         public string Message { get; set; }
 
+        private bool success = false;
         /// <summary>
         /// Execute Result
         /// </summary>
         public bool Success { get { return success; } set { success = value; } }
 
+        private HttpStatusCode errorCode =  HttpStatusCode.OK;
         /// <summary>
         /// Result Error Code
         /// </summary>
-        public string ErrorCode { get { return errorCode; } set { errorCode = value; } }
+        public HttpStatusCode ErrorCode { get { return errorCode; } set { errorCode = value; } }
 
         /// <summary>
         /// Return Result List

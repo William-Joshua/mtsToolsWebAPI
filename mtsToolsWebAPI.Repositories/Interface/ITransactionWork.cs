@@ -1,72 +1,70 @@
-﻿using System;
+﻿using mtsToolsWebAPI.Common;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace mtsToolsWebAPI.Repositories
-{
-    public interface IGenericRepository<T> where T : class
-    {
-
-        /// <summary>
-        /// 新增
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        bool Add(T entity);
+namespace mtsToolsWebAPI.Repositories.Interface
+{    /// <summary>
+     /// 数据库事务操作方法
+     /// </summary>
+    public interface ITransactionWork
+    {/// <summary>
+     /// 新增
+     /// </summary>
+     /// <param name="entity"></param>
+     /// <returns></returns>
+        bool Add<T>(T entity) where T : GenericModel;
         /// <summary>
         /// 批量添加
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
-        bool BatchAdd(T[] entities);
+        bool BatchAdd<T>(T[] entities) where T : GenericModel;
         /// <summary>
-        /// 更新
+        /// 修改
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        bool Update(T entity);
+        bool Update<T>(T entity) where T : class;
         /// <summary>
-        /// 根据条件更新
+        /// 根据条件更新数据
+        /// <para>如：Update(u =>u.Id==1,u =>new User{Name="ok"});</para>
         /// </summary>
-        /// <param name="where"></param>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        bool Update(Expression<Func<T, bool>> where, Expression<Func<T, T>> entity);
+        /// <param name="where">The where.</param>
+        /// <param name="entity">The entity.</param>
+        bool Update<T>(Expression<Func<T, bool>> where, Expression<Func<T, T>> entity) where T : class;
         /// <summary>
         /// 根据ID获取单个数据
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        T GetEntiyByID(Guid id);
+        T GetEntiyByID<T>(Guid id) where T : GenericModel;
         /// <summary>
         /// 根据查询条件获取单个数据
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        T GetEntityByWhere(Expression<Func<T, bool>> expression);
-        /// <summary>
-        /// 根据ID删除
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        bool Delete(Guid id);
+        T GetEntityByWhere<T>(Expression<Func<T, bool>> expression) where T : class;
         /// <summary>
         /// 删除
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        bool Delete(T entity);
+        bool Delete<T>(T entity) where T : class;
         /// <summary>
         /// 根据条件删除数据
         /// </summary>
         /// <param name="expression"></param>
-        bool Delete(Expression<Func<T, bool>> expression);
+        bool Delete<T>(Expression<Func<T, bool>> expression) where T : class;
         /// <summary>
         /// 判断数据是否存在
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        bool IsExist(Expression<Func<T, bool>> expression);
+        bool IsExist<T>(Expression<Func<T, bool>> expression) where T : class;
         /// <summary>
         /// 获取数据列表
         /// </summary>
@@ -74,7 +72,7 @@ namespace mtsToolsWebAPI.Repositories
         /// <param name="expression">查询条件</param>
         /// <param name="orderBy">排序方式</param>
         /// <returns></returns>
-        List<T> GetList(string orderColumn, Expression<Func<T, bool>> expression = null, string orderBy = "desc");
+        List<T> GetList<T>(string orderColumn, Expression<Func<T, bool>> expression = null, string orderBy = "desc") where T : class;
         /// <summary>
         /// 获取分页数据列表
         /// </summary>
@@ -85,6 +83,6 @@ namespace mtsToolsWebAPI.Repositories
         /// <param name="orderBy">排序方式</param>
         /// <param name="totalCount"></param>
         /// <returns></returns>
-        List<T> GetPageList(Expression<Func<T, bool>> expression, int pageSize, int pageIndex, out int totalCount, string orderColumn, string orderBy = "desc");
+        List<T> GetPageList<T>(Expression<Func<T, bool>> expression, int pageSize, int pageIndex, out int totalCount, string orderColumn, string orderBy = "desc") where T : class;
     }
 }

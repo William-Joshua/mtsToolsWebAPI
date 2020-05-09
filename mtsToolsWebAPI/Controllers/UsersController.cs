@@ -35,9 +35,9 @@ namespace mtsToolsWebAPI.Controllers
         /// <returns></returns>
         private IQueryable<MtsAccountInfo> GetUserDetailList()
         {
-                return _userDetailRepository.GetAll();
+            return null;
         }
-
+        
         /// <summary>
         /// 用户登录
         /// </summary>
@@ -52,7 +52,7 @@ namespace mtsToolsWebAPI.Controllers
                 mtsAccountInfo.UserID = userAccount.Account;
                 PassWordHelper passWordHelper = new PassWordHelper(userAccount.PassWord);
                 mtsAccountInfo.PassWord = passWordHelper.CrtPassWord();
-                ServiceResponse serviceResponse = _userDetailRepository.GetModelQuery(mtsAccountInfo);
+                ServiceResponse serviceResponse =null;
                 List<MtsAccountInfo> mtsAccountInfos = serviceResponse.Results as List<MtsAccountInfo>;
                 bool isVaildUser = mtsAccountInfos.Where(user => user.UserID == mtsAccountInfo.UserID && user.PassWord == mtsAccountInfo.PassWord&& user.IsService == "1SV").Count() == 1 ? true : false;
                 return isVaildUser;
@@ -66,7 +66,7 @@ namespace mtsToolsWebAPI.Controllers
         /// <summary>
         /// 根据用户ID获取用户详细信息
         /// </summary>
-        /// <param name="userID">用户ID</param>
+        /// <param name="userAccount">用户ID</param>
         /// <returns></returns>
         [HttpPost]
         public WebAPIReponseResult GetUserDetailByUserID([FromBody] UserAccount userAccount)
@@ -77,7 +77,7 @@ namespace mtsToolsWebAPI.Controllers
                 {
                     UserID = userAccount.Account
                 };
-                ServiceResponse serviceResponse = _userDetailRepository.GetModelQuery(mtsAccountInfo);
+                ServiceResponse serviceResponse = null;
                 List<MtsAccountInfo> mtsAccountInfos = serviceResponse.Results as List<MtsAccountInfo>;
 
                 mtsAccountInfo =mtsAccountInfos.Where(user => user.UserID == mtsAccountInfo.UserID).FirstOrDefault();

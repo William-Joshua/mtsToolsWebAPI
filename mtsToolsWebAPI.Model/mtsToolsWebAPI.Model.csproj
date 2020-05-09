@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JWTAuthTokenInfo.cs" />
     <Compile Include="UserAccessRequest.cs" />
     <Compile Include="UserAccount.cs" />
     <Compile Include="UserInfo.cs" />

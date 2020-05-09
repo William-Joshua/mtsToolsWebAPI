@@ -1,23 +1,23 @@
-﻿using System;
+﻿using mtsToolsWebAPI.Common;
+using mtsToolsWebAPI.EFCore.EntityFrameworkCore;
+using mtsToolsWebAPI.Repositories.Interface;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using mtsToolsWebAPI.Common;
-using mtsToolsWebAPI.EFCore.EntityFrameworkCore;
 using Z.EntityFramework.Plus;
 
 namespace mtsToolsWebAPI.Repositories
 {
     /// <summary>
-    /// 数据操作通用方法
+    /// 数据库事务操作方法
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class GenericRepository<T>  : IGenericRepository<T> where T : GenericModel
+    public class TransactionWork : ITransactionWork
     {
         protected EFCoreContext efCoreContext;
 
-        public GenericRepository(EFCoreContext _efCoreContext)
+        public TransactionWork(EFCoreContext _efCoreContext)
         {
             efCoreContext = _efCoreContext;
         }
@@ -27,7 +27,7 @@ namespace mtsToolsWebAPI.Repositories
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public bool Add(T entity)
+        public bool Add<T>(T entity) where T : GenericModel
         {
             try
             {
@@ -46,7 +46,7 @@ namespace mtsToolsWebAPI.Repositories
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
-        public bool BatchAdd(T[] entities)
+        public bool BatchAdd<T>(T[] entities) where T : GenericModel
         {
             try
             {
@@ -64,7 +64,7 @@ namespace mtsToolsWebAPI.Repositories
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public bool Update(T entity)
+        public bool Update<T>(T entity) where T : class
         {
             try
             {
@@ -84,7 +84,7 @@ namespace mtsToolsWebAPI.Repositories
         /// </summary>
         /// <param name="where">The where.</param>
         /// <param name="entity">The entity.</param>
-        public bool Update(Expression<Func<T, bool>> where, Expression<Func<T, T>> entity)
+        public bool Update<T>(Expression<Func<T, bool>> where, Expression<Func<T, T>> entity) where T : class
         {
             try
             {
@@ -101,7 +101,7 @@ namespace mtsToolsWebAPI.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public T GetEntiyByID(Guid id)
+        public T GetEntiyByID<T>(Guid id) where T : GenericModel
         {
             try
             {
@@ -119,43 +119,17 @@ namespace mtsToolsWebAPI.Repositories
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        public T GetEntityByWhere(Expression<Func<T, bool>> expression)
+        public T GetEntityByWhere<T>(Expression<Func<T, bool>> expression) where T : class
         {
             return efCoreContext.Set<T>().FirstOrDefault(expression);
         }
-        /// <summary>
-        /// 根据ID删除
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public bool Delete(Guid id)
-        {
-            var model = GetEntiyByID(id);
-            if (model != null)
-            {
-                try
-                {
-                    efCoreContext.Set<T>().Attach(model);
-                    efCoreContext.Entry(model).State = EntityState.Deleted;
-                    int rowsAffected = efCoreContext.SaveChanges();
-                    return rowsAffected > 0 ? true : false;
-                }
-                catch (Exception ex)
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
+
         /// <summary>
         /// 删除
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public bool Delete(T entity)
+        public bool Delete<T>(T entity) where T : class
         {
             try
             {
@@ -172,7 +146,7 @@ namespace mtsToolsWebAPI.Repositories
         /// 根据条件删除数据
         /// </summary>
         /// <param name="expression"></param>
-        public bool Delete(Expression<Func<T, bool>> expression)
+        public bool Delete<T>(Expression<Func<T, bool>> expression) where T : class
         {
             try
             {
@@ -190,7 +164,7 @@ namespace mtsToolsWebAPI.Repositories
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        public bool IsExist(Expression<Func<T, bool>> expression)
+        public bool IsExist<T>(Expression<Func<T, bool>> expression) where T : class
         {
             return efCoreContext.Set<T>().Any(expression);
         }
@@ -202,12 +176,12 @@ namespace mtsToolsWebAPI.Repositories
         /// <param name="expression">查询条件</param>
         /// <param name="orderBy">排序方式</param>
         /// <returns></returns>
-        public List<T> GetList(string orderColumn, Expression<Func<T, bool>> expression = null, string orderBy = "desc")
+        public List<T> GetList<T>(string orderColumn, Expression<Func<T, bool>> expression = null, string orderBy = "desc") where T : class
         {
             try
             {
                 IQueryable<T> quary;
-                if (expression == null)
+                if (expression != null)
                 {
                     quary = efCoreContext.Set<T>().AsNoTracking().AsQueryable();
                 }
@@ -232,7 +206,7 @@ namespace mtsToolsWebAPI.Repositories
         /// <param name="orderBy">排序方式</param>
         /// <param name="totalCount"></param>
         /// <returns></returns>
-        public List<T> GetPageList(Expression<Func<T, bool>> expression, int pageSize, int pageIndex, out int totalCount, string orderColumn, string orderBy = "desc")
+        public List<T> GetPageList<T>(Expression<Func<T, bool>> expression, int pageSize, int pageIndex, out int totalCount, string orderColumn, string orderBy = "desc") where T : class
         {
             try
             {

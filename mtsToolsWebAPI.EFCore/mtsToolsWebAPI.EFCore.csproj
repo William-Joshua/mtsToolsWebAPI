@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityFrameworkCore\EFCoreContext.cs" />
+    <Compile Include="EntityFrameworkCore\GenericModel.cs" />
     <Compile Include="EntityFrameworkCore\MtsGroupPermissionMapping.cs" />
     <Compile Include="EntityFrameworkCore\MtsPermissionGroup.cs" />
     <Compile Include="EntityFrameworkCore\MtsSoftwareInfo.cs" />
