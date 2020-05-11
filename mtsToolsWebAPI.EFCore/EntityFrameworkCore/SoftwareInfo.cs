@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mtsToolsWebAPI.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,7 +14,7 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
     /// 软件基本信息 -- 标志菜单分属哪个应用
     /// </summary>
     [Table("MtsSoftwareInfo")]
-    public class MtsSoftwareInfo
+    public class SoftwareInfo
     {
         [Key]
         [StringLength(64)]
@@ -27,14 +28,14 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
         [StringLength(32)]
         public string SoftwareVersion { get; set; } // 通用版本号，格式 Vxxxx.xxxx.xxxx 分3段，以大写 V 开头，每段最长4位（数字前不补0）
         [StringLength(1024)]
-        public string SoftWareAddress { get; set; } // 软件地址, web 为 URL，WinForm 为安装包更新路径
+        public string SoftWareAddress { get; set; } // 软件地址, web 为 URL， 安装包为更新路径
         [StringLength(2048)]
         public string SoftWareDescription { get; set; }// 软件简述
     }
 
-    public class MtsSoftwareInfoMap : EntityTypeConfiguration<MtsSoftwareInfo>
+    public class SoftwareInfoMap : EntityTypeConfiguration<SoftwareInfo>
     {
-        public MtsSoftwareInfoMap()
+        public SoftwareInfoMap()
         {
             ToTable("MtsSoftwareInfo");
             Property(m => m.SoftwareID)

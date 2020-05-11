@@ -14,7 +14,7 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
     /// 员工基本信息登记表
     /// </summary>
     [Table("MtsAccountInfo")]
-    public class MtsAccountInfo: GenericModel
+    public class AccountInfo
     {
         [Key]
         [StringLength(64)]
@@ -38,9 +38,9 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
         public string IsService { get; set; } // 是否在职 0NU // 1SV
     }
 
-    public class MtsAccountInfoMap: EntityTypeConfiguration<MtsAccountInfo>
+    public class AccountInfoMap: EntityTypeConfiguration<AccountInfo>
     {
-        public MtsAccountInfoMap()
+        public AccountInfoMap()
         {
             ToTable("MtsAccountInfo");
             Property(m => m.InnerUserID)

@@ -14,22 +14,22 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
         {
         }
 
-        public virtual DbSet<MtsAccountInfo> MtsAccountInfos { get; set; }
-        public virtual DbSet<MtsMenuInfo> MtsMenuInfos { get; set; }
-        public virtual DbSet<MtsScheduleWorkOrder> MtsScheduleWorkOrders { get; set; }
-        public virtual DbSet<MtsSoftwareInfo> MtsSoftwareInfos { get; set; }
-        public virtual DbSet<MtsPermissionGroup> MtsPermissionGroups { get; set; }
-        public virtual DbSet<MtsUserGroupMapping> MtsUserGroupMappings { get; set; }
-        public virtual DbSet<MtsGroupPermissionMapping> MtsGroupPermissionMappings { get; set; }
+        public virtual DbSet<AccountInfo> MtsAccountInfos { get; set; }
+        public virtual DbSet<MenuInfo> MtsMenuInfos { get; set; }
+        public virtual DbSet<ScheduleWorkOrderInfo> MtsScheduleWorkOrders { get; set; }
+        public virtual DbSet<SoftwareInfo> MtsSoftwareInfos { get; set; }
+        public virtual DbSet<PermissionGroup> MtsPermissionGroups { get; set; }
+        public virtual DbSet<UserGroupMapping> MtsUserGroupMappings { get; set; }
+        public virtual DbSet<GroupPermissionMapping> MtsGroupPermissionMappings { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new MtsAccountInfoMap());
-            modelBuilder.Configurations.Add(new MtsMenuInfoMap());
-            modelBuilder.Configurations.Add(new MtsScheduleWorkOrderMap());
-            modelBuilder.Configurations.Add(new MtsSoftwareInfoMap());
-            modelBuilder.Configurations.Add(new MtsPermissionGroupMap());
-            modelBuilder.Configurations.Add(new MtsUserGroupMappingMap());
+            modelBuilder.Configurations.Add(new AccountInfoMap());
+            modelBuilder.Configurations.Add(new MenuInfoMap());
+            modelBuilder.Configurations.Add(new ScheduleWorkOrderMap());
+            modelBuilder.Configurations.Add(new SoftwareInfoMap());
+            modelBuilder.Configurations.Add(new PermissionGroupMap());
+            modelBuilder.Configurations.Add(new UserGroupMappingMap());
             modelBuilder.Configurations.Add(new MtsGroupPermissionMappingMap());
             base.OnModelCreating(modelBuilder);
         }

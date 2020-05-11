@@ -3,6 +3,7 @@ using Autofac.Integration.WebApi;
 using mtsToolsWebAPI.EFCore.EntityFrameworkCore;
 using mtsToolsWebAPI.Factories;
 using mtsToolsWebAPI.Repositories;
+using mtsToolsWebAPI.Repositories.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,6 +14,9 @@ using System.Web.Http;
 
 namespace mtsToolsWebAPI
 {
+    /// <summary>
+    /// Auto Fac Config File
+    /// </summary>
     public class AutofacConfig
     {
         public static IContainer Container;
@@ -41,6 +45,10 @@ namespace mtsToolsWebAPI
                    .As<IDbFactory>()
                    .InstancePerRequest();
 
+            builder.RegisterType<TransactionWork>()
+                .As<ITransactionWork>()
+                .InstancePerRequest();
+            
             builder.RegisterGeneric(typeof(GenericRepository<>))
                    .As(typeof(IGenericRepository<>))
                    .InstancePerRequest();

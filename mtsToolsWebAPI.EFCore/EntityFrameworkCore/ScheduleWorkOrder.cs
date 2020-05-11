@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mtsToolsWebAPI.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,7 +14,7 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
     /// 排产计划工单
     /// </summary>
     [Table("MtsScheduleWorkOrder")]
-    public class MtsScheduleWorkOrder
+    public class ScheduleWorkOrder
     {
         [Key]
         [StringLength(64)]
@@ -43,9 +44,9 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
         public string IsScheduleVaild { get; set; } // 是否有效 0NU // 1EN
     }
 
-    public class MtsScheduleWorkOrderMap : EntityTypeConfiguration<MtsScheduleWorkOrder>
+    public class ScheduleWorkOrderMap : EntityTypeConfiguration<ScheduleWorkOrder>
     {
-        public MtsScheduleWorkOrderMap()
+        public ScheduleWorkOrderMap()
         {
             ToTable("MtsScheduleWorkOrder");
             Property(m => m.InnerScheduleID)

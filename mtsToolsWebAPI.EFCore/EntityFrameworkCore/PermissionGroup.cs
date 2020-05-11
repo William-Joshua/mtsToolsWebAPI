@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mtsToolsWebAPI.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,7 +14,7 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
     /// 组权限登记表
     /// </summary>
     [Table("MtsPermissionGroup")]
-    public class MtsPermissionGroup
+    public class PermissionGroup
     {
         [Key]
         [StringLength(64)]
@@ -28,9 +29,9 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
         [StringLength(5)]
         public string IsVaild { get; set; } // 是否有效 0NU // 1EN
     }
-    public class MtsPermissionGroupMap : EntityTypeConfiguration<MtsPermissionGroup>
+    public class PermissionGroupMap : EntityTypeConfiguration<PermissionGroup>
     {
-        public MtsPermissionGroupMap()
+        public PermissionGroupMap()
         {
             ToTable("MtsPermissionGroup");
             Property(m => m.InnerGroupID)

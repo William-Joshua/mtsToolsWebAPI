@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
+namespace mtsToolsWebAPI.Services.Interface
 {
-    /// <summary>
-    /// 产品
-    /// </summary>
-    class MtsDeviceModelInfo
+    public  interface IUserService
     {
     }
 }

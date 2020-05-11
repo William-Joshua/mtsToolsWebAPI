@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="GenericService.cs" />
     <Compile Include="Interface\IGenericService.cs" />
+    <Compile Include="Interface\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>

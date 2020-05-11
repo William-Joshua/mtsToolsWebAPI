@@ -20,24 +20,16 @@ namespace mtsToolsWebAPI.Controllers
     /// </summary>
     public class UsersController : ApiController
     {
-        private readonly IGenericRepository<MtsAccountInfo> _userDetailRepository;
+        private readonly IGenericRepository<AccountInfo> _userDetailRepository;
         /// <summary>
         /// 用户管理 --- 构造
         /// </summary>
         /// <param name="userDetailRepository"></param>
-        public UsersController(IGenericRepository<MtsAccountInfo> userDetailRepository)
+        public UsersController(IGenericRepository<AccountInfo> userDetailRepository)
         {
             _userDetailRepository = userDetailRepository;
         }
-        /// <summary>
-        /// 获得用户信息列表
-        /// </summary>
-        /// <returns></returns>
-        private IQueryable<MtsAccountInfo> GetUserDetailList()
-        {
-            return null;
-        }
-        
+       
         /// <summary>
         /// 用户登录
         /// </summary>
@@ -48,12 +40,12 @@ namespace mtsToolsWebAPI.Controllers
         {
             try
             {
-                MtsAccountInfo mtsAccountInfo = new MtsAccountInfo();
+                AccountInfo mtsAccountInfo = new AccountInfo();
                 mtsAccountInfo.UserID = userAccount.Account;
                 PassWordHelper passWordHelper = new PassWordHelper(userAccount.PassWord);
                 mtsAccountInfo.PassWord = passWordHelper.CrtPassWord();
                 ServiceResponse serviceResponse =null;
-                List<MtsAccountInfo> mtsAccountInfos = serviceResponse.Results as List<MtsAccountInfo>;
+                List<AccountInfo> mtsAccountInfos = serviceResponse.Results as List<AccountInfo>;
                 bool isVaildUser = mtsAccountInfos.Where(user => user.UserID == mtsAccountInfo.UserID && user.PassWord == mtsAccountInfo.PassWord&& user.IsService == "1SV").Count() == 1 ? true : false;
                 return isVaildUser;
             }
@@ -73,12 +65,12 @@ namespace mtsToolsWebAPI.Controllers
         {
             try
             {
-                MtsAccountInfo mtsAccountInfo = new MtsAccountInfo
+                AccountInfo mtsAccountInfo = new AccountInfo
                 {
                     UserID = userAccount.Account
                 };
                 ServiceResponse serviceResponse = null;
-                List<MtsAccountInfo> mtsAccountInfos = serviceResponse.Results as List<MtsAccountInfo>;
+                List<AccountInfo> mtsAccountInfos = serviceResponse.Results as List<AccountInfo>;
 
                 mtsAccountInfo =mtsAccountInfos.Where(user => user.UserID == mtsAccountInfo.UserID).FirstOrDefault();
                 return new WebAPIReponseResult(HttpStatusCode.OK,"OK",JsonConvert.DeserializeObject<Dictionary<string,dynamic>>(JsonConvert.SerializeObject(mtsAccountInfo))) ;

@@ -68,15 +68,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityFrameworkCore\EFCoreContext.cs" />
-    <Compile Include="EntityFrameworkCore\GenericModel.cs" />
-    <Compile Include="EntityFrameworkCore\MtsGroupPermissionMapping.cs" />
-    <Compile Include="EntityFrameworkCore\MtsPermissionGroup.cs" />
-    <Compile Include="EntityFrameworkCore\MtsSoftwareInfo.cs" />
-    <Compile Include="EntityFrameworkCore\MtsAccountInfo.cs" />
-    <Compile Include="EntityFrameworkCore\MtsDeviceModelInfo.cs" />
-    <Compile Include="EntityFrameworkCore\MtsMenuInfo.cs" />
-    <Compile Include="EntityFrameworkCore\MtsScheduleWorkOrder.cs" />
-    <Compile Include="EntityFrameworkCore\MtsUserGroupMapping.cs" />
+    <Compile Include="EntityFrameworkCore\GroupPermissionMapping.cs" />
+    <Compile Include="EntityFrameworkCore\PermissionGroup.cs" />
+    <Compile Include="EntityFrameworkCore\SoftwareInfo.cs" />
+    <Compile Include="EntityFrameworkCore\AccountInfo.cs" />
+    <Compile Include="EntityFrameworkCore\DeviceModelInfo.cs" />
+    <Compile Include="EntityFrameworkCore\MenuInfo.cs" />
+    <Compile Include="EntityFrameworkCore\ScheduleWorkOrderInfo.cs" />
+    <Compile Include="EntityFrameworkCore\UserGroupMapping.cs" />
     <Compile Include="Migrations\201903260804023_Initial.cs" />
     <Compile Include="Migrations\201903260804023_Initial.Designer.cs">
       <DependentUpon>201903260804023_Initial.cs</DependentUpon>
@@ -125,6 +124,10 @@
     <Compile Include="Migrations\201905220704127_Initial11.Designer.cs">
       <DependentUpon>201905220704127_Initial11.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005110702436_Initial12.cs" />
+    <Compile Include="Migrations\202005110702436_Initial12.designer.cs">
+      <DependentUpon>202005110702436_Initial12.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -165,12 +168,21 @@
     <EmbeddedResource Include="Migrations\201905220704127_Initial11.resx">
       <DependentUpon>201905220704127_Initial11.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005110702436_Initial12.resx">
+      <DependentUpon>202005110702436_Initial12.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\mtsToolsWebAPI.Common\mtsToolsWebAPI.Common.csproj">
+      <Project>{350e016b-be4f-465e-82f7-f3a130f44c4e}</Project>
+      <Name>mtsToolsWebAPI.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

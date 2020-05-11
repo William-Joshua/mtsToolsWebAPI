@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace mtsToolsWebAPI.Common
+namespace mtsToolsWebAPI.Repositories
 {
     /// <summary>
     /// 通用字段实体类

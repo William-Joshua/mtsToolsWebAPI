@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mtsToolsWebAPI.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,29 +11,28 @@ using System.Threading.Tasks;
 namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
 {
     /// <summary>
-    /// 
+    /// 用户与用户组映射关系
     /// </summary>
-    [Table("MtsGroupPermissionMapping")]
-    public class MtsGroupPermissionMapping
+    [Table("MtsUserGroupMapping")]
+    public class UserGroupMapping
     {
         [Key]
         [StringLength(64)]
         public string InnerUniqueID { get; set; }// 唯一
-        [Required]
         [StringLength(64)]
-        public string InnerGroupID { get; set; } // 组号
-        [Required]
+        public string InnerUserID { get; set; } // GUID
         [StringLength(64)]
-        public string InnerMenuID { get; set; } // 菜单编号
+        public string GroupID { get; set; } // 组名
         [Required]
         [StringLength(5)]
         public string IsMapVaild { get; set; } // 是否有效 0NU // 1EN
     }
-    public class MtsGroupPermissionMappingMap : EntityTypeConfiguration<MtsGroupPermissionMapping>
+
+    public class UserGroupMappingMap : EntityTypeConfiguration<UserGroupMapping>
     {
-        public MtsGroupPermissionMappingMap()
+        public UserGroupMappingMap()
         {
-            ToTable("MtsGroupPermissionMapping");
+            ToTable("MtsUserGroupMapping");
             Property(m => m.InnerUniqueID)
                 .IsRequired();
         }

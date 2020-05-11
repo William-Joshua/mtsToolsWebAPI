@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mtsToolsWebAPI.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,7 +14,7 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
     /// 功能菜单信息
     /// </summary>
     [Table("MtsMenuInfo")]
-    public class MtsMenuInfo
+    public class MenuInfo
     {
         [Key]
         [StringLength(64)]
@@ -41,9 +42,9 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
         public string IsMenuVaild { get; set; } // 是否有效 0NU // 1EN
     }
 
-    public class MtsMenuInfoMap : EntityTypeConfiguration<MtsMenuInfo>
+    public class MenuInfoMap : EntityTypeConfiguration<MenuInfo>
     {
-        public MtsMenuInfoMap()
+        public MenuInfoMap()
         {
             ToTable("MtsMenuInfo");
             Property(m => m.InnerMenuID)

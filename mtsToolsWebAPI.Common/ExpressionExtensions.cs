@@ -26,8 +26,7 @@ namespace mtsToolsWebAPI.Common
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public static Expression<Func<T, bool>> False<T>() { return f => false; }
-
-
+        
         /// <summary>
         /// And condition join
         /// </summary>
