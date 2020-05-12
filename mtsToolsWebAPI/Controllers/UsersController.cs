@@ -1,8 +1,11 @@
-﻿using mtsToolsWebAPI.Common;
+﻿using mtsToolsWebAPI.ActionFilters;
+using mtsToolsWebAPI.Common;
+using mtsToolsWebAPI.Common.Security;
 using mtsToolsWebAPI.EFCore.EntityFrameworkCore;
 using mtsToolsWebAPI.Model;
 using mtsToolsWebAPI.Repositories;
 using mtsToolsWebAPI.Services;
+using mtsToolsWebAPI.IServices;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -20,23 +23,24 @@ namespace mtsToolsWebAPI.Controllers
     /// </summary>
     public class UsersController : ApiController
     {
-        private readonly IGenericRepository<AccountInfo> _userDetailRepository;
+        private readonly IUsersService _usersService;
+
         /// <summary>
         /// 用户管理 --- 构造
         /// </summary>
-        /// <param name="userDetailRepository"></param>
-        public UsersController(IGenericRepository<AccountInfo> userDetailRepository)
+        /// <param name="usersService"></param>
+        public UsersController(IUsersService usersService)
         {
-            _userDetailRepository = userDetailRepository;
+            _usersService = usersService;
         }
-       
+
         /// <summary>
         /// 用户登录
         /// </summary>
         /// <param name="userAccount">用户账号</param>
         /// <returns></returns>
         [HttpPost]
-        public bool VerifyUserAccount([FromBody] UserAccount userAccount )
+        public WebAPIReponseResult VerifyUserAccount([FromBody] UserAccount userAccount )
         {
             try
             {
@@ -44,10 +48,12 @@ namespace mtsToolsWebAPI.Controllers
                 mtsAccountInfo.UserID = userAccount.Account;
                 PassWordHelper passWordHelper = new PassWordHelper(userAccount.PassWord);
                 mtsAccountInfo.PassWord = passWordHelper.CrtPassWord();
-                ServiceResponse serviceResponse =null;
-                List<AccountInfo> mtsAccountInfos = serviceResponse.Results as List<AccountInfo>;
-                bool isVaildUser = mtsAccountInfos.Where(user => user.UserID == mtsAccountInfo.UserID && user.PassWord == mtsAccountInfo.PassWord&& user.IsService == "1SV").Count() == 1 ? true : false;
-                return isVaildUser;
+
+                JwtAuthUtil jwtAuthUtil = new JwtAuthUtil();
+                string jwtToken = jwtAuthUtil.GenerateToken();
+
+                return new WebAPIReponseResult(HttpStatusCode.OK, "OK", jwtToken);
+
             }
             catch (Exception)
             {
@@ -61,6 +67,7 @@ namespace mtsToolsWebAPI.Controllers
         /// <param name="userAccount">用户ID</param>
         /// <returns></returns>
         [HttpPost]
+        [JwtAuthFilter]
         public WebAPIReponseResult GetUserDetailByUserID([FromBody] UserAccount userAccount)
         {
             try
@@ -83,19 +90,6 @@ namespace mtsToolsWebAPI.Controllers
             {
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.InternalServerError) { Content = new StringContent(exception.Message) });
             }
-        }
-        /// <summary>
-        /// 根据用户与平台获取菜单
-        /// </summary>
-        /// <param name="userAccessRequest">用户与平台</param>
-        /// <returns></returns>
-        [HttpPost]
-        public List<UserMenuItem> GetUserMenuTree([FromBody] UserAccessRequest userAccessRequest)
-        {
-            List<UserMenuItem> userMenuTree = new List<UserMenuItem>();
-            UserService userService = new UserService();
-            userMenuTree = userService.GetUserMenuTree(userAccessRequest);
-            return userMenuTree;
         }
 
     }

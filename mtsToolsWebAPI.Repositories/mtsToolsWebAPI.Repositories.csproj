@@ -64,13 +64,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenericModel.cs" />
-    <Compile Include="Interface\IGenericRepository.cs" />
-    <Compile Include="Interface\ITransactionWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GenericRepository.cs" />
     <Compile Include="TransactionWork.cs" />
-    <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\mtsToolsWebAPI.Common\mtsToolsWebAPI.Common.csproj">
@@ -81,9 +77,9 @@
       <Project>{bdd74dcd-fc84-4c44-a95d-3a742d391cfd}</Project>
       <Name>mtsToolsWebAPI.EFCore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\mtsToolsWebAPI.Factories\mtsToolsWebAPI.Factories.csproj">
-      <Project>{166e0db5-4b64-4c0b-b67b-41ca61ef04fe}</Project>
-      <Name>mtsToolsWebAPI.Factories</Name>
+    <ProjectReference Include="..\mtsToolsWebAPI.IRepositories\mtsToolsWebAPI.IRepositories.csproj">
+      <Project>{8B47EEB8-6B6B-4119-92D6-5B6CA0D3ECAB}</Project>
+      <Name>mtsToolsWebAPI.IRepositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\mtsToolsWebAPI.Model\mtsToolsWebAPI.Model.csproj">
       <Project>{0fbddb27-f779-4157-9cda-21c93303007a}</Project>

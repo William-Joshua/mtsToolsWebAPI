@@ -1,6 +1,7 @@
 ﻿using mtsToolsWebAPI.Common;
+using mtsToolsWebAPI.EFCore;
+using mtsToolsWebAPI.IRepositories;
 using mtsToolsWebAPI.Repositories;
-using mtsToolsWebAPI.Repositories.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;

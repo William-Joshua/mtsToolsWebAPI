@@ -442,6 +442,10 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\mtsToolsWebAPI.ActionFilters\mtsToolsWebAPI.ActionFilters.csproj">
+      <Project>{A5177CBB-9E1E-438B-B2D3-9F39F1FA7578}</Project>
+      <Name>mtsToolsWebAPI.ActionFilters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\mtsToolsWebAPI.Common\mtsToolsWebAPI.Common.csproj">
       <Project>{350e016b-be4f-465e-82f7-f3a130f44c4e}</Project>
       <Name>mtsToolsWebAPI.Common</Name>
@@ -450,9 +454,13 @@
       <Project>{bdd74dcd-fc84-4c44-a95d-3a742d391cfd}</Project>
       <Name>mtsToolsWebAPI.EFCore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\mtsToolsWebAPI.Factories\mtsToolsWebAPI.Factories.csproj">
-      <Project>{166e0db5-4b64-4c0b-b67b-41ca61ef04fe}</Project>
-      <Name>mtsToolsWebAPI.Factories</Name>
+    <ProjectReference Include="..\mtsToolsWebAPI.IRepositories\mtsToolsWebAPI.IRepositories.csproj">
+      <Project>{8B47EEB8-6B6B-4119-92D6-5B6CA0D3ECAB}</Project>
+      <Name>mtsToolsWebAPI.IRepositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\mtsToolsWebAPI.IServices\mtsToolsWebAPI.IServices.csproj">
+      <Project>{fed84666-9e34-4837-890c-8568334dd7b0}</Project>
+      <Name>mtsToolsWebAPI.IServices</Name>
     </ProjectReference>
     <ProjectReference Include="..\mtsToolsWebAPI.Model\mtsToolsWebAPI.Model.csproj">
       <Project>{0fbddb27-f779-4157-9cda-21c93303007a}</Project>

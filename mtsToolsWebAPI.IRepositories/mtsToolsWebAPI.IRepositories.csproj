@@ -4,18 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B8BF26CE-7F2B-4D00-872C-061D701BE146}</ProjectGuid>
+    <ProjectGuid>{8B47EEB8-6B6B-4119-92D6-5B6CA0D3ECAB}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>mtsToolsWebAPI.Services</RootNamespace>
-    <AssemblyName>mtsToolsWebAPI.Services</AssemblyName>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>mtsToolsWebAPI.IRepositories</RootNamespace>
+    <AssemblyName>mtsToolsWebAPI.IRepositories</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,16 +23,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -47,12 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenericService.cs" />
+    <Compile Include="IGenericRepository.cs" />
+    <Compile Include="ITransactionWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UsersService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\mtsToolsWebAPI.Common\mtsToolsWebAPI.Common.csproj">
@@ -62,22 +53,6 @@
     <ProjectReference Include="..\mtsToolsWebAPI.EFCore\mtsToolsWebAPI.EFCore.csproj">
       <Project>{bdd74dcd-fc84-4c44-a95d-3a742d391cfd}</Project>
       <Name>mtsToolsWebAPI.EFCore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\mtsToolsWebAPI.IRepositories\mtsToolsWebAPI.IRepositories.csproj">
-      <Project>{8B47EEB8-6B6B-4119-92D6-5B6CA0D3ECAB}</Project>
-      <Name>mtsToolsWebAPI.IRepositories</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\mtsToolsWebAPI.IServices\mtsToolsWebAPI.IServices.csproj">
-      <Project>{FED84666-9E34-4837-890C-8568334DD7B0}</Project>
-      <Name>mtsToolsWebAPI.IServices</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\mtsToolsWebAPI.Model\mtsToolsWebAPI.Model.csproj">
-      <Project>{0fbddb27-f779-4157-9cda-21c93303007a}</Project>
-      <Name>mtsToolsWebAPI.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\mtsToolsWebAPI.Repositories\mtsToolsWebAPI.Repositories.csproj">
-      <Project>{8f7dc587-af7e-480a-b212-e4c0e002d402}</Project>
-      <Name>mtsToolsWebAPI.Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

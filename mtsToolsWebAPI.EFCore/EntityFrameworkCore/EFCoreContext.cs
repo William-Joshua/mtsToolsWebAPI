@@ -16,7 +16,7 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
 
         public virtual DbSet<AccountInfo> MtsAccountInfos { get; set; }
         public virtual DbSet<MenuInfo> MtsMenuInfos { get; set; }
-        public virtual DbSet<ScheduleWorkOrderInfo> MtsScheduleWorkOrders { get; set; }
+        public virtual DbSet<ScheduleWorkOrder> MtsScheduleWorkOrders { get; set; }
         public virtual DbSet<SoftwareInfo> MtsSoftwareInfos { get; set; }
         public virtual DbSet<PermissionGroup> MtsPermissionGroups { get; set; }
         public virtual DbSet<UserGroupMapping> MtsUserGroupMappings { get; set; }

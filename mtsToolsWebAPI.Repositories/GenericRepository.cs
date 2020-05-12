@@ -4,7 +4,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using mtsToolsWebAPI.Common;
+using mtsToolsWebAPI.EFCore;
 using mtsToolsWebAPI.EFCore.EntityFrameworkCore;
+using mtsToolsWebAPI.IRepositories;
 using Z.EntityFramework.Plus;
 
 namespace mtsToolsWebAPI.Repositories
@@ -105,7 +107,7 @@ namespace mtsToolsWebAPI.Repositories
         {
             try
             {
-                Expression<Func<T, bool>> where = x => x.ID.Equals(id);
+                Expression<Func<T, bool>> where = x => x.GenericModifyID.Equals(id);
                 var modelList = efCoreContext.Set<T>().Where<T>(where).AsQueryable().ToList();
                 return modelList.Any() ? modelList.FirstOrDefault() : null;
             }
@@ -202,7 +204,7 @@ namespace mtsToolsWebAPI.Repositories
         /// <param name="expression">查询条件</param>
         /// <param name="orderBy">排序方式</param>
         /// <returns></returns>
-        public List<T> GetList(string orderColumn, Expression<Func<T, bool>> expression = null, string orderBy = "desc")
+        public List<T> GetList(string orderColumn, Expression<Func<T, bool>> expression = null, OrderBySort orderBySort = OrderBySort.Desc)
         {
             try
             {
@@ -215,7 +217,7 @@ namespace mtsToolsWebAPI.Repositories
                 {
                     quary = efCoreContext.Set<T>().AsNoTracking().AsQueryable().Where(expression);
                 }
-                return orderBy == "desc" ? quary.OrderByDescending(orderColumn).ToList() : quary.OrderBy(orderColumn).ToList();
+                return orderBySort == OrderBySort.Desc ? quary.OrderByDescending(orderColumn).ToList() : quary.OrderBy(orderColumn).ToList();
             }
             catch (Exception ex)
             {
@@ -232,7 +234,7 @@ namespace mtsToolsWebAPI.Repositories
         /// <param name="orderBy">排序方式</param>
         /// <param name="totalCount"></param>
         /// <returns></returns>
-        public List<T> GetPageList(Expression<Func<T, bool>> expression, int pageSize, int pageIndex, out int totalCount, string orderColumn, string orderBy = "desc")
+        public List<T> GetPageList(Expression<Func<T, bool>> expression, int pageSize, int pageIndex, out int totalCount, string orderColumn, OrderBySort orderBySort = OrderBySort.Desc)
         {
             try
             {
@@ -243,7 +245,7 @@ namespace mtsToolsWebAPI.Repositories
                 int skipCount = (pageIndex - 1) * pageSize;
                 totalCount = efCoreContext.Set<T>().Where<T>(expression).Count();
                 IQueryable<T> quary = efCoreContext.Set<T>().AsNoTracking().AsQueryable().Where(expression);
-                return orderBy == "desc" ? quary.OrderByDescending(orderColumn).Skip(skipCount).Take(pageSize).ToList() : quary.OrderBy(orderColumn).Skip(skipCount).Take(pageSize).ToList();
+                return orderBySort == OrderBySort.Desc ? quary.OrderByDescending(orderColumn).Skip(skipCount).Take(pageSize).ToList() : quary.OrderBy(orderColumn).Skip(skipCount).Take(pageSize).ToList();
             }
             catch (Exception ex)
             {

@@ -14,7 +14,7 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
     /// 软件基本信息 -- 标志菜单分属哪个应用
     /// </summary>
     [Table("MtsSoftwareInfo")]
-    public class SoftwareInfo
+    public class SoftwareInfo : GenericModel
     {
         [Key]
         [StringLength(64)]

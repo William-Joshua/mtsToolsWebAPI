@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{166E0DB5-4B64-4C0B-B67B-41CA61EF04FE}</ProjectGuid>
+    <ProjectGuid>{FED84666-9E34-4837-890C-8568334DD7B0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>mtsToolsWebAPI.Factories</RootNamespace>
-    <AssemblyName>mtsToolsWebAPI.Factories</AssemblyName>
+    <RootNamespace>mtsToolsWebAPI.IServices</RootNamespace>
+    <AssemblyName>mtsToolsWebAPI.IServices</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,18 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbFactory.cs" />
-    <Compile Include="Interface\IDbFactory.cs" />
+    <Compile Include="IGenericService.cs" />
+    <Compile Include="IUsersService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\mtsToolsWebAPI.EFCore\mtsToolsWebAPI.EFCore.csproj">
-      <Project>{bdd74dcd-fc84-4c44-a95d-3a742d391cfd}</Project>
-      <Name>mtsToolsWebAPI.EFCore</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -14,7 +14,7 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
     /// 用户与用户组映射关系
     /// </summary>
     [Table("MtsUserGroupMapping")]
-    public class UserGroupMapping
+    public class UserGroupMapping : GenericModel
     {
         [Key]
         [StringLength(64)]

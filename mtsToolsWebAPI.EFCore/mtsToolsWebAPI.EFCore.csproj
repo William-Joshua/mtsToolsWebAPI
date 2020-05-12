@@ -74,8 +74,9 @@
     <Compile Include="EntityFrameworkCore\AccountInfo.cs" />
     <Compile Include="EntityFrameworkCore\DeviceModelInfo.cs" />
     <Compile Include="EntityFrameworkCore\MenuInfo.cs" />
-    <Compile Include="EntityFrameworkCore\ScheduleWorkOrderInfo.cs" />
+    <Compile Include="EntityFrameworkCore\ScheduleWorkOrder.cs" />
     <Compile Include="EntityFrameworkCore\UserGroupMapping.cs" />
+    <Compile Include="GenericModel.cs" />
     <Compile Include="Migrations\201903260804023_Initial.cs" />
     <Compile Include="Migrations\201903260804023_Initial.Designer.cs">
       <DependentUpon>201903260804023_Initial.cs</DependentUpon>
@@ -128,6 +129,10 @@
     <Compile Include="Migrations\202005110702436_Initial12.designer.cs">
       <DependentUpon>202005110702436_Initial12.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005120425193_addGenericModel.cs" />
+    <Compile Include="Migrations\202005120425193_addGenericModel.designer.cs">
+      <DependentUpon>202005120425193_addGenericModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -170,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005110702436_Initial12.resx">
       <DependentUpon>202005110702436_Initial12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005120425193_addGenericModel.resx">
+      <DependentUpon>202005120425193_addGenericModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

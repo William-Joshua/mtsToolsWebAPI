@@ -14,7 +14,7 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
     /// 排产计划工单
     /// </summary>
     [Table("MtsScheduleWorkOrder")]
-    public class ScheduleWorkOrder
+    public class ScheduleWorkOrder : GenericModel
     {
         [Key]
         [StringLength(64)]

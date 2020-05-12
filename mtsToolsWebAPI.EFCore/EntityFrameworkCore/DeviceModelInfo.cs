@@ -9,7 +9,5 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
     /// <summary>
     /// 产品
     /// </summary>
-    class DeviceModelInfo
-    {
-    }
+   public  class DeviceModelInfo { }
 }

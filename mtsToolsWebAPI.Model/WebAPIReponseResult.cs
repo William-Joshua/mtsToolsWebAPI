@@ -13,7 +13,7 @@ namespace mtsToolsWebAPI.Model
 
         public string ReponseMessage { get; set; }
 
-        public Dictionary<string, dynamic> ResposeDataExtend { get; set; } = new Dictionary<string, dynamic>();
+        public dynamic ResposeDataExtend { get; set; }
         
         public WebAPIReponseResult(HttpStatusCode statusCode, string reponseMsg)
         {
@@ -21,7 +21,12 @@ namespace mtsToolsWebAPI.Model
             this.ReponseMessage = reponseMsg;
             this.ResposeDataExtend = null;
         }
-
+        public WebAPIReponseResult(HttpStatusCode statusCode, string reponseMsg, string resposeData)
+        {
+            this.ReponseStatusCode = statusCode;
+            this.ReponseMessage = reponseMsg;
+            this.ResposeDataExtend = resposeData;
+        }
         public WebAPIReponseResult(HttpStatusCode statusCode,string reponseMsg,Dictionary<string, dynamic> resposeData)
         {
             this.ReponseStatusCode = statusCode;

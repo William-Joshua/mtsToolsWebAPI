@@ -14,7 +14,7 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
     /// 
     /// </summary>
     [Table("MtsGroupPermissionMapping")]
-    public class GroupPermissionMapping
+    public class GroupPermissionMapping : GenericModel
     {
         [Key]
         [StringLength(64)]

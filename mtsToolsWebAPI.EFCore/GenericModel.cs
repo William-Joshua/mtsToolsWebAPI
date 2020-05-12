@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace mtsToolsWebAPI.Repositories
+namespace mtsToolsWebAPI.EFCore
 {
     /// <summary>
     /// 通用字段实体类
@@ -16,24 +16,15 @@ namespace mtsToolsWebAPI.Repositories
         /// <summary>
         /// 主键
         /// </summary>
-        [Key]
-        public string ID { get; set; } = Guid.NewGuid().ToString();
+        public string GenericModifyID { get; set; } = Guid.NewGuid().ToString();
         /// <summary>
         /// 创建人
         /// </summary>
         [Required, StringLength(50)]
-        public string CreateUser { get; set; }
+        public string GenericModifyUser { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>
-        public DateTime CreateTime { get; set; } = DateTime.Now;
-        /// <summary>
-        /// 修改人
-        /// </summary>
-        public string ModifyUser { get; set; }
-        /// <summary>
-        /// 修改日期
-        /// </summary>
-        public DateTime? ModifyTime { get; set; }
+        public DateTime GenericModifyTimestamp { get; set; } = DateTime.Now;
     }
 }

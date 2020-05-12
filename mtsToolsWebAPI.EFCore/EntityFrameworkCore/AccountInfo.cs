@@ -14,7 +14,7 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
     /// 员工基本信息登记表
     /// </summary>
     [Table("MtsAccountInfo")]
-    public class AccountInfo
+    public class AccountInfo: GenericModel
     {
         [Key]
         [StringLength(64)]

@@ -14,7 +14,7 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
     /// 组权限登记表
     /// </summary>
     [Table("MtsPermissionGroup")]
-    public class PermissionGroup
+    public class PermissionGroup : GenericModel
     {
         [Key]
         [StringLength(64)]

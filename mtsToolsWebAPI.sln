@@ -17,9 +17,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mtsToolsWebAPI.Model", "mts
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mtsToolsWebAPI.Repositories", "mtsToolsWebAPI.Repositories\mtsToolsWebAPI.Repositories.csproj", "{8F7DC587-AF7E-480A-B212-E4C0E002D402}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mtsToolsWebAPI.Factories", "mtsToolsWebAPI.Factories\mtsToolsWebAPI.Factories.csproj", "{166E0DB5-4B64-4C0B-B67B-41CA61EF04FE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mtsToolsWebAPI.Services", "mtsToolsWebAPI.Services\mtsToolsWebAPI.Services.csproj", "{B8BF26CE-7F2B-4D00-872C-061D701BE146}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mtsToolsWebAPI.ActionFilters", "mtsToolsWebAPI.ActionFilters\mtsToolsWebAPI.ActionFilters.csproj", "{A5177CBB-9E1E-438B-B2D3-9F39F1FA7578}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mtsToolsWebAPI.IServices", "mtsToolsWebAPI.IServices\mtsToolsWebAPI.IServices.csproj", "{FED84666-9E34-4837-890C-8568334DD7B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mtsToolsWebAPI.IRepositories", "mtsToolsWebAPI.IRepositories\mtsToolsWebAPI.IRepositories.csproj", "{8B47EEB8-6B6B-4119-92D6-5B6CA0D3ECAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,14 +59,22 @@ Global
 		{8F7DC587-AF7E-480A-B212-E4C0E002D402}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F7DC587-AF7E-480A-B212-E4C0E002D402}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F7DC587-AF7E-480A-B212-E4C0E002D402}.Release|Any CPU.Build.0 = Release|Any CPU
-		{166E0DB5-4B64-4C0B-B67B-41CA61EF04FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{166E0DB5-4B64-4C0B-B67B-41CA61EF04FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{166E0DB5-4B64-4C0B-B67B-41CA61EF04FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{166E0DB5-4B64-4C0B-B67B-41CA61EF04FE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B8BF26CE-7F2B-4D00-872C-061D701BE146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B8BF26CE-7F2B-4D00-872C-061D701BE146}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8BF26CE-7F2B-4D00-872C-061D701BE146}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8BF26CE-7F2B-4D00-872C-061D701BE146}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5177CBB-9E1E-438B-B2D3-9F39F1FA7578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5177CBB-9E1E-438B-B2D3-9F39F1FA7578}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5177CBB-9E1E-438B-B2D3-9F39F1FA7578}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5177CBB-9E1E-438B-B2D3-9F39F1FA7578}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FED84666-9E34-4837-890C-8568334DD7B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FED84666-9E34-4837-890C-8568334DD7B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FED84666-9E34-4837-890C-8568334DD7B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FED84666-9E34-4837-890C-8568334DD7B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B47EEB8-6B6B-4119-92D6-5B6CA0D3ECAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B47EEB8-6B6B-4119-92D6-5B6CA0D3ECAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B47EEB8-6B6B-4119-92D6-5B6CA0D3ECAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B47EEB8-6B6B-4119-92D6-5B6CA0D3ECAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

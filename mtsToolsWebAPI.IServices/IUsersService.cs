@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mtsToolsWebAPI.Services.Interface
+namespace mtsToolsWebAPI.IServices
 {
-    public  interface IUserService
+    public  interface IUsersService
     {
     }
 }

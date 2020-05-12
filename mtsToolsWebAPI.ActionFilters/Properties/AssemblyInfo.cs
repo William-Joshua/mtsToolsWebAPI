@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("mtsToolsWebAPI.Factories")]
+[assembly: AssemblyTitle("mtsToolsWebAPI.ActionFilters")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("mtsToolsWebAPI.Factories")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyProduct("mtsToolsWebAPI.ActionFilters")]
+[assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("166e0db5-4b64-4c0b-b67b-41ca61ef04fe")]
+[assembly: Guid("a5177cbb-9e1e-438b-b2d3-9f39f1fa7578")]
 
 // 程序集的版本信息由下列四个值组成: 
 //

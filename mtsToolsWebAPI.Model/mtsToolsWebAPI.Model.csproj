@@ -42,12 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JWTAuthTokenInfo.cs" />
-    <Compile Include="UserAccessRequest.cs" />
-    <Compile Include="UserAccount.cs" />
-    <Compile Include="UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserMenuItem.cs" />
+    <Compile Include="UserAccount.cs" />
     <Compile Include="WebAPIReponseResult.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

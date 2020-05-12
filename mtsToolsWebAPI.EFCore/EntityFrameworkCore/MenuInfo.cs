@@ -14,7 +14,7 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
     /// 功能菜单信息
     /// </summary>
     [Table("MtsMenuInfo")]
-    public class MenuInfo
+    public class MenuInfo : GenericModel
     {
         [Key]
         [StringLength(64)]
