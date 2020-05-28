@@ -133,6 +133,10 @@
     <Compile Include="Migrations\202005120425193_addGenericModel.designer.cs">
       <DependentUpon>202005120425193_addGenericModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005200803121_menuaddsubitem.cs" />
+    <Compile Include="Migrations\202005200803121_menuaddsubitem.designer.cs">
+      <DependentUpon>202005200803121_menuaddsubitem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -178,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005120425193_addGenericModel.resx">
       <DependentUpon>202005120425193_addGenericModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005200803121_menuaddsubitem.resx">
+      <DependentUpon>202005200803121_menuaddsubitem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

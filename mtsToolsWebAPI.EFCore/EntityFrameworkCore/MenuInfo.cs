@@ -34,6 +34,8 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
         public int? MenuWeight { get; set; } // 菜单权重，用于排序，父类标签权重默认为0 最高，其他无权重，则按时间排序
         [StringLength(1024)]
         public string MenuComponent { get; set; } // 菜单对应成员, web -> URL /  winform -> componentID
+        public bool EnableMasterTemplate { get; set; } // 菜单启用主模板
+        public bool SubItemContainer { get; set; } // 包含子菜单
         [StringLength(200)]
         public string MenuIcon { get; set; } // 图标名称
         public DateTime? MenuCreateDate { get; set; } // 菜单创建时间
