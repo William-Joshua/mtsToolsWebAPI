@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace mtsToolsWebAPI.Model
 {
-    public class WebAPIReponseResult
+    public class WebAPIReponse
     {
         public HttpStatusCode ReponseStatusCode { get; set; } = HttpStatusCode.OK;
 
@@ -15,19 +15,19 @@ namespace mtsToolsWebAPI.Model
 
         public dynamic ResposeDataExtend { get; set; }
         
-        public WebAPIReponseResult(HttpStatusCode statusCode, string reponseMsg)
+        public WebAPIReponse(HttpStatusCode statusCode, string reponseMsg)
         {
             this.ReponseStatusCode = statusCode;
             this.ReponseMessage = reponseMsg;
             this.ResposeDataExtend = null;
         }
-        public WebAPIReponseResult(HttpStatusCode statusCode, string reponseMsg, string resposeData)
+        public WebAPIReponse(HttpStatusCode statusCode, string reponseMsg, string resposeData)
         {
             this.ReponseStatusCode = statusCode;
             this.ReponseMessage = reponseMsg;
             this.ResposeDataExtend = resposeData;
         }
-        public WebAPIReponseResult(HttpStatusCode statusCode,string reponseMsg,Dictionary<string, dynamic> resposeData)
+        public WebAPIReponse(HttpStatusCode statusCode,string reponseMsg,Dictionary<string, dynamic> resposeData)
         {
             this.ReponseStatusCode = statusCode;
             this.ReponseMessage = reponseMsg;

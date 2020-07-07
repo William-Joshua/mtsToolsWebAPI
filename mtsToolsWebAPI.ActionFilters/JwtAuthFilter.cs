@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -22,23 +24,29 @@ namespace mtsToolsWebAPI.ActionFilters
             {
                 if (request.Headers.Authorization == null || request.Headers.Authorization.Scheme != "Bearer")
                 {
-                    throw new System.Exception("Lost Token");
+                    setErrorResponse(actionContext, "Lost  Token");
                 }
                 else
                 {
-                    //解密後會回傳Json格式的物件(即加密前的資料)
-                    var jwtObject = Jose.JWT.Decode<Dictionary<string, Object>>(
-                    request.Headers.Authorization.Parameter,
-                    Encoding.UTF8.GetBytes(secret),
-                    JwsAlgorithm.HS512);
-
-                    if (IsTokenExpired(jwtObject["Exp"].ToString()))
+                    try
                     {
-                        throw new System.Exception("Token Expired");
+                        //解密後會回傳Json格式的物件(即加密前的資料)
+                        var jwtObject = Jose.JWT.Decode<Dictionary<string, Object>>(
+                        request.Headers.Authorization.Parameter,
+                        Encoding.UTF8.GetBytes(secret),
+                        JwsAlgorithm.HS512);
+
+                        if (IsTokenExpired(jwtObject["Exp"].ToString()))
+                        {
+                            setErrorResponse(actionContext, "Token Expired");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        setErrorResponse(actionContext, ex.Message);
                     }
                 }
             }
-
             base.OnActionExecuting(actionContext);
         }
 
@@ -54,6 +62,12 @@ namespace mtsToolsWebAPI.ActionFilters
         public bool IsTokenExpired(string dateTime)
         {
             return Convert.ToDateTime(dateTime) < DateTime.Now;
+        }
+
+        private static void setErrorResponse(HttpActionContext actionContext, string message)
+        {
+            var response = actionContext.Request.CreateErrorResponse(HttpStatusCode.Unauthorized, message);
+            actionContext.Response = response;
         }
     }
 }

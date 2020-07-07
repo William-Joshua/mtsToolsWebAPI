@@ -33,33 +33,40 @@ namespace mtsToolsWebAPI
 
         private static IContainer RegisterServices(ContainerBuilder builder)
         {
-            HttpConfiguration config = GlobalConfiguration.Configuration;
+            try
+            {
+                HttpConfiguration config = GlobalConfiguration.Configuration;
 
-            builder.RegisterGeneric(typeof(GenericRepository<>))
-                .As(typeof(IGenericRepository<>))
-                .InstancePerRequest();
+                builder.RegisterGeneric(typeof(GenericRepository<>))
+                    .As(typeof(IGenericRepository<>))
+                    .InstancePerRequest();
 
-            builder.RegisterType<TransactionWork>()
-                .As<ITransactionWork>()
-                .InstancePerRequest();
+                builder.RegisterType<TransactionWork>()
+                    .As<ITransactionWork>()
+                    .InstancePerRequest();
 
-            builder.RegisterType<EFCoreContext>()
-                .As<DbContext>()
-                .InstancePerRequest();
+                builder.RegisterType<EFCoreContext>()
+                    .InstancePerRequest();
 
-            var service = Assembly.Load("mtsToolsWebAPI.Services");
-            var iService = Assembly.Load("mtsToolsWebAPI.IServices");
-            //根据名称约定（服务层的接口和实现均以App结尾），实现服务接口和服务实现的依赖
-            builder.RegisterAssemblyTypes(iService, service).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces();
-            //Register your Web API controllers.  
-            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            // OPTIONAL: Register the Autofac filter provider.
-            builder.RegisterWebApiFilterProvider(config);
-            // OPTIONAL: Register the Autofac model binder provider.
-            builder.RegisterWebApiModelBinderProvider();
-            //Set the dependency resolver to be Autofac.  
-            Container = builder.Build();
-            return Container;
+                var service = Assembly.Load("mtsToolsWebAPI.Services");
+                var iService = Assembly.Load("mtsToolsWebAPI.IServices");
+                //根据名称约定（服务层的接口和实现均以 Service 结尾），实现服务接口和服务实现的依赖
+                builder.RegisterAssemblyTypes(iService, service).Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces();
+                //Register your Web API controllers.  
+                builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+                // OPTIONAL: Register the Autofac filter provider.
+                builder.RegisterWebApiFilterProvider(config);
+                // OPTIONAL: Register the Autofac model binder provider.
+                builder.RegisterWebApiModelBinderProvider();
+                //Set the dependency resolver to be Autofac.  
+                Container = builder.Build();
+                return Container;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
     }
 }

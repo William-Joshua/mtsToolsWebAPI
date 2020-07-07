@@ -41,9 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IGenericService.cs" />
+    <Compile Include="INavMenuService.cs" />
     <Compile Include="IUsersService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\mtsToolsWebAPI.EFCore\mtsToolsWebAPI.EFCore.csproj">
+      <Project>{BDD74DCD-FC84-4C44-A95D-3A742D391CFD}</Project>
+      <Name>mtsToolsWebAPI.EFCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

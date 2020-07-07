@@ -17,11 +17,11 @@ namespace mtsToolsWebAPI.Repositories
     /// <typeparam name="T"></typeparam>
     public class GenericRepository<T>  : IGenericRepository<T> where T : GenericModel
     {
-        protected EFCoreContext efCoreContext;
+        protected EFCoreContext _efCoreContext;
 
-        public GenericRepository(EFCoreContext _efCoreContext)
+        public GenericRepository(EFCoreContext efCoreContext)
         {
-            efCoreContext = _efCoreContext;
+            _efCoreContext = efCoreContext;
         }
 
         /// <summary>
@@ -33,8 +33,8 @@ namespace mtsToolsWebAPI.Repositories
         {
             try
             {
-                efCoreContext.Entry(entity).State = EntityState.Added;
-                int rowsAffected = efCoreContext.SaveChanges();
+                _efCoreContext.Entry(entity).State = EntityState.Added;
+                int rowsAffected = _efCoreContext.SaveChanges();
                 return rowsAffected > 0 ? true : false;
             }
             catch (Exception ex)
@@ -52,8 +52,8 @@ namespace mtsToolsWebAPI.Repositories
         {
             try
             {
-                efCoreContext.Set<T>().AddRange(entities);
-                int rowsAffected = efCoreContext.SaveChanges();
+                _efCoreContext.Set<T>().AddRange(entities);
+                int rowsAffected = _efCoreContext.SaveChanges();
                 return rowsAffected == entities.Length ? true : false;
             }
             catch (Exception ex)
@@ -70,9 +70,9 @@ namespace mtsToolsWebAPI.Repositories
         {
             try
             {
-                efCoreContext.Set<T>().Attach(entity);
-                efCoreContext.Entry(entity).State = EntityState.Modified;
-                int rowsAffected = efCoreContext.SaveChanges();
+                _efCoreContext.Set<T>().Attach(entity);
+                _efCoreContext.Entry(entity).State = EntityState.Modified;
+                int rowsAffected = _efCoreContext.SaveChanges();
                 return rowsAffected > 0 ? true : false;
             }
             catch (Exception ex)
@@ -90,7 +90,7 @@ namespace mtsToolsWebAPI.Repositories
         {
             try
             {
-                efCoreContext.Set<T>().Where<T>(where).Update(entity);
+                _efCoreContext.Set<T>().Where<T>(where).Update(entity);
                 return true;
             }
             catch (Exception ex)
@@ -108,7 +108,7 @@ namespace mtsToolsWebAPI.Repositories
             try
             {
                 Expression<Func<T, bool>> where = x => x.GenericModifyID.Equals(id);
-                var modelList = efCoreContext.Set<T>().Where<T>(where).AsQueryable().ToList();
+                var modelList = _efCoreContext.Set<T>().Where<T>(where).AsQueryable().ToList();
                 return modelList.Any() ? modelList.FirstOrDefault() : null;
             }
             catch (Exception ex)
@@ -123,7 +123,7 @@ namespace mtsToolsWebAPI.Repositories
         /// <returns></returns>
         public T GetEntityByWhere(Expression<Func<T, bool>> expression)
         {
-            return efCoreContext.Set<T>().FirstOrDefault(expression);
+            return _efCoreContext.Set<T>().FirstOrDefault(expression);
         }
         /// <summary>
         /// 根据ID删除
@@ -137,9 +137,9 @@ namespace mtsToolsWebAPI.Repositories
             {
                 try
                 {
-                    efCoreContext.Set<T>().Attach(model);
-                    efCoreContext.Entry(model).State = EntityState.Deleted;
-                    int rowsAffected = efCoreContext.SaveChanges();
+                    _efCoreContext.Set<T>().Attach(model);
+                    _efCoreContext.Entry(model).State = EntityState.Deleted;
+                    int rowsAffected = _efCoreContext.SaveChanges();
                     return rowsAffected > 0 ? true : false;
                 }
                 catch (Exception ex)
@@ -161,8 +161,8 @@ namespace mtsToolsWebAPI.Repositories
         {
             try
             {
-                efCoreContext.Set<T>().Remove(entity);
-                int rowsAffected = efCoreContext.SaveChanges();
+                _efCoreContext.Set<T>().Remove(entity);
+                int rowsAffected = _efCoreContext.SaveChanges();
                 return rowsAffected > 0 ? true : false;
             }
             catch (Exception ex)
@@ -178,7 +178,7 @@ namespace mtsToolsWebAPI.Repositories
         {
             try
             {
-                efCoreContext.Set<T>().Where<T>(expression).Delete();
+                _efCoreContext.Set<T>().Where<T>(expression).Delete();
                 return true;
             }
             catch (Exception ex)
@@ -194,7 +194,7 @@ namespace mtsToolsWebAPI.Repositories
         /// <returns></returns>
         public bool IsExist(Expression<Func<T, bool>> expression)
         {
-            return efCoreContext.Set<T>().Any(expression);
+            return _efCoreContext.Set<T>().Any(expression);
         }
 
         /// <summary>
@@ -211,11 +211,11 @@ namespace mtsToolsWebAPI.Repositories
                 IQueryable<T> quary;
                 if (expression == null)
                 {
-                    quary = efCoreContext.Set<T>().AsNoTracking().AsQueryable();
+                    quary = _efCoreContext.Set<T>().AsNoTracking().AsQueryable();
                 }
                 else
                 {
-                    quary = efCoreContext.Set<T>().AsNoTracking().AsQueryable().Where(expression);
+                    quary = _efCoreContext.Set<T>().AsNoTracking().AsQueryable().Where(expression);
                 }
                 return orderBySort == OrderBySort.Desc ? quary.OrderByDescending(orderColumn).ToList() : quary.OrderBy(orderColumn).ToList();
             }
@@ -243,8 +243,8 @@ namespace mtsToolsWebAPI.Repositories
                     pageIndex = 1;
                 }
                 int skipCount = (pageIndex - 1) * pageSize;
-                totalCount = efCoreContext.Set<T>().Where<T>(expression).Count();
-                IQueryable<T> quary = efCoreContext.Set<T>().AsNoTracking().AsQueryable().Where(expression);
+                totalCount = _efCoreContext.Set<T>().Where<T>(expression).Count();
+                IQueryable<T> quary = _efCoreContext.Set<T>().AsNoTracking().AsQueryable().Where(expression);
                 return orderBySort == OrderBySort.Desc ? quary.OrderByDescending(orderColumn).Skip(skipCount).Take(pageSize).ToList() : quary.OrderBy(orderColumn).Skip(skipCount).Take(pageSize).ToList();
             }
             catch (Exception ex)

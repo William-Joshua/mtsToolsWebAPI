@@ -14,5 +14,10 @@ namespace mtsToolsWebAPI.Services
         public UsersService(ITransactionWork transactionWork, IGenericRepository<AccountInfo> genericRepository) : base(transactionWork, genericRepository)
         {
         }
+
+        public AccountInfo Login(string loginAccount, string password)
+        {
+            return genericRepository.GetEntityByWhere(x => x.UserID.Equals(loginAccount) && x.PassWord.Equals(password));
+        }
     }
 }

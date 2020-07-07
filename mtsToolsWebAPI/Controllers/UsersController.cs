@@ -24,7 +24,6 @@ namespace mtsToolsWebAPI.Controllers
     public class UsersController : ApiController
     {
         private readonly IUsersService _usersService;
-
         /// <summary>
         /// 用户管理 --- 构造
         /// </summary>
@@ -40,19 +39,20 @@ namespace mtsToolsWebAPI.Controllers
         /// <param name="userAccount">用户账号</param>
         /// <returns></returns>
         [HttpPost]
-        public WebAPIReponseResult VerifyUserAccount([FromBody] UserAccount userAccount )
+        public WebAPIReponse SignIn([FromBody] UserAccountRequest userAccount )
         {
             try
             {
                 AccountInfo mtsAccountInfo = new AccountInfo();
-                mtsAccountInfo.UserID = userAccount.Account;
-                PassWordHelper passWordHelper = new PassWordHelper(userAccount.PassWord);
+                mtsAccountInfo.UserID = userAccount.LoginAccount;
+                PassWordHelper passWordHelper = new PassWordHelper(userAccount.LoginPassword);
                 mtsAccountInfo.PassWord = passWordHelper.CrtPassWord();
-
+                
+                // 校验密码，生成 Token
                 JwtAuthUtil jwtAuthUtil = new JwtAuthUtil();
                 string jwtToken = jwtAuthUtil.GenerateToken();
 
-                return new WebAPIReponseResult(HttpStatusCode.OK, "OK", jwtToken);
+                return new WebAPIReponse(HttpStatusCode.OK, "OK", jwtToken);
 
             }
             catch (Exception)
@@ -68,19 +68,19 @@ namespace mtsToolsWebAPI.Controllers
         /// <returns></returns>
         [HttpPost]
         [JwtAuthFilter]
-        public WebAPIReponseResult GetUserDetailByUserID([FromBody] UserAccount userAccount)
+        public WebAPIReponse GetUserDetailByUserID([FromBody] UserAccountRequest userAccount)
         {
             try
             {
                 AccountInfo mtsAccountInfo = new AccountInfo
                 {
-                    UserID = userAccount.Account
+                    UserID = userAccount.LoginAccount
                 };
                 ServiceResponse serviceResponse = null;
                 List<AccountInfo> mtsAccountInfos = serviceResponse.Results as List<AccountInfo>;
 
                 mtsAccountInfo =mtsAccountInfos.Where(user => user.UserID == mtsAccountInfo.UserID).FirstOrDefault();
-                return new WebAPIReponseResult(HttpStatusCode.OK,"OK",JsonConvert.DeserializeObject<Dictionary<string,dynamic>>(JsonConvert.SerializeObject(mtsAccountInfo))) ;
+                return new WebAPIReponse(HttpStatusCode.OK,"OK",JsonConvert.DeserializeObject<Dictionary<string,dynamic>>(JsonConvert.SerializeObject(mtsAccountInfo))) ;
             }
             catch(HttpResponseException)
             {

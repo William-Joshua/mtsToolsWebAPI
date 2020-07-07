@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace mtsToolsWebAPI.IServices
 {
-    interface IGenericService
+    public interface INavMenuService
     {
     }
 }
