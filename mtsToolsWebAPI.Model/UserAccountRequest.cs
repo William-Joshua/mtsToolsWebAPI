@@ -19,5 +19,20 @@ namespace mtsToolsWebAPI.Model
         /// 登录密码
         /// </summary>
         public string LoginPassword { get; set; }
+        /// <summary>
+        /// 登录平台
+        /// Web API 支持第三方平台访问，如未指明平台默认第三方
+        /// 不同平台访问权限存在差异
+        /// </summary>
+        public SoftPlatform LoginPlatform { get; set; } = SoftPlatform.thirdParty;
+    }
+
+   public enum SoftPlatform
+    {
+        mtsToolsStudio,
+        mtsToolCaliburn,
+        mtsToolLoggerCenter,
+        mtsToolsSchedule,
+        thirdParty
     }
 }

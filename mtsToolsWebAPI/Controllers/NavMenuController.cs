@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using mtsToolsWebAPI.ActionFilters;
 using mtsToolsWebAPI.IServices;
 using mtsToolsWebAPI.Model;
 
@@ -30,7 +31,8 @@ namespace mtsToolsWebAPI.Controllers
         /// <param name="userAccount">用户账号</param>
         /// <returns></returns>
         [HttpPost]
-        public WebAPIReponse Post( UserAccountRequest userAccount)
+        [JwtAuthFilter]
+        public WebAPIReponse GetNavMenuList(UserNavMenuRequest userNavMenu)
         {
             try
             {

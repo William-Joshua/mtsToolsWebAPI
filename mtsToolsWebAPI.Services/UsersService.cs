@@ -1,6 +1,7 @@
 ﻿using mtsToolsWebAPI.EFCore.EntityFrameworkCore;
 using mtsToolsWebAPI.IRepositories;
 using mtsToolsWebAPI.IServices;
+using mtsToolsWebAPI.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,9 @@ namespace mtsToolsWebAPI.Services
         {
         }
 
-        public AccountInfo Login(string loginAccount, string password)
+        public AccountInfo Login(AccountInfo userAccount)
         {
-            return genericRepository.GetEntityByWhere(x => x.UserID.Equals(loginAccount) && x.PassWord.Equals(password));
+            return genericRepository.GetEntityByWhere(x => x.UserID.Equals(userAccount.UserID) && x.PassWord.Equals(userAccount.PassWord));
         }
     }
 }

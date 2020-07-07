@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserAccountRequest.cs" />
+    <Compile Include="UserNavMenuRequest.cs" />
     <Compile Include="WebAPIReponse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

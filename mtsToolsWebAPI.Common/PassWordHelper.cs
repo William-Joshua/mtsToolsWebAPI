@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Configuration;
 
 namespace mtsToolsWebAPI.Common
 {
@@ -22,7 +23,7 @@ namespace mtsToolsWebAPI.Common
         {
             string saltPassWord = string.Empty;
             /// 盐因子可动态变更，考虑到只在场内使用故不作此操作
-            string saltItem = string.Format(@"_itech_mts&");
+            string saltItem = WebConfigurationManager.AppSettings["MtsToolsSalt"];
             saltPassWord = saltItem + password;
             return saltPassWord;
         }

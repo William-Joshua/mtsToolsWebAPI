@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Configuration;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
@@ -16,52 +17,39 @@ namespace mtsToolsWebAPI.ActionFilters
      /// </summary>
     public class JwtAuthFilter : ActionFilterAttribute
     {
-        public override void OnActionExecuting(System.Web.Http.Controllers.HttpActionContext actionContext)
+        public override void OnActionExecuting(HttpActionContext actionContext)
         {
-            string secret = "_itech_mts_Jwt_Secret";//加解密的key,如果不一樣會無法成功解密
-            var request = actionContext.Request;
-            if (!WithoutVerifyToken(request.RequestUri.ToString()))
-            {
-                if (request.Headers.Authorization == null || request.Headers.Authorization.Scheme != "Bearer")
-                {
-                    setErrorResponse(actionContext, "Lost  Token");
-                }
-                else
-                {
-                    try
-                    {
-                        //解密後會回傳Json格式的物件(即加密前的資料)
-                        var jwtObject = Jose.JWT.Decode<Dictionary<string, Object>>(
-                        request.Headers.Authorization.Parameter,
-                        Encoding.UTF8.GetBytes(secret),
-                        JwsAlgorithm.HS512);
+            // TODO: key應該移至config
+            var secret = WebConfigurationManager.AppSettings["JwtKeySecret"];
 
-                        if (IsTokenExpired(jwtObject["Exp"].ToString()))
+            if (actionContext.Request.Headers.Authorization == null || actionContext.Request.Headers.Authorization.Scheme != "Bearer")
+            {
+                setErrorResponse(actionContext, "Access Denied");
+            }
+            else
+            {
+                try
+                {
+                    var jwtObject = Jose.JWT.Decode<JwtAuthObject>(
+                        actionContext.Request.Headers.Authorization.Parameter,
+                        Encoding.UTF8.GetBytes(secret),
+                        JwsAlgorithm.HS256);
+                    if (jwtObject != null)
+                    {
+                        //判断口令过期时间
+                        if (Convert.ToDateTime( jwtObject.ExpiryDateTime )< DateTime.Now)
                         {
-                            setErrorResponse(actionContext, "Token Expired");
+                            setErrorResponse(actionContext, "Signature Timeout");
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        setErrorResponse(actionContext, ex.Message);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    setErrorResponse(actionContext, ex.Message);
                 }
             }
+
             base.OnActionExecuting(actionContext);
-        }
-
-        //Login不需要驗證因為還沒有token
-        public bool WithoutVerifyToken(string requestUri)
-        {
-            if (requestUri.EndsWith("/Login"))
-                return true;
-            return false;
-        }
-
-        //驗證token時效
-        public bool IsTokenExpired(string dateTime)
-        {
-            return Convert.ToDateTime(dateTime) < DateTime.Now;
         }
 
         private static void setErrorResponse(HttpActionContext actionContext, string message)

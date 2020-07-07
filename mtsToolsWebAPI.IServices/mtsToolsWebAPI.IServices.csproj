@@ -50,6 +50,10 @@
       <Project>{BDD74DCD-FC84-4C44-A95D-3A742D391CFD}</Project>
       <Name>mtsToolsWebAPI.EFCore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\mtsToolsWebAPI.Model\mtsToolsWebAPI.Model.csproj">
+      <Project>{0FBDDB27-F779-4157-9CDA-21C93303007A}</Project>
+      <Name>mtsToolsWebAPI.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
 ﻿using mtsToolsWebAPI.EFCore.EntityFrameworkCore;
+using mtsToolsWebAPI.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,6 @@ namespace mtsToolsWebAPI.IServices
         /// <param name="loginAccount">登录名</param>
         /// <param name="password">登录密码</param>
         /// <returns></returns>
-        AccountInfo Login(string loginAccount, string password);
+        AccountInfo Login(AccountInfo userAccount);
     }
 }
