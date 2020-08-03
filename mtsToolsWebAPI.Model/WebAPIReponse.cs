@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace mtsToolsWebAPI.Model
 {
@@ -26,6 +27,13 @@ namespace mtsToolsWebAPI.Model
             this.ReponseStatusCode = statusCode;
             this.ReponseMessage = reponseMsg;
             this.ResposeDataExtend = resposeData;
+        }
+        public WebAPIReponse(HttpStatusCode statusCode, string reponseMsg, dynamic resposeData)
+        {
+            this.ReponseStatusCode = statusCode;
+            this.ReponseMessage = reponseMsg;
+            var jsonSerializerSettings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
+            this.ResposeDataExtend = JsonConvert.SerializeObject(resposeData, Formatting.None, jsonSerializerSettings);
         }
         public WebAPIReponse(HttpStatusCode statusCode,string reponseMsg,Dictionary<string, dynamic> resposeData)
         {

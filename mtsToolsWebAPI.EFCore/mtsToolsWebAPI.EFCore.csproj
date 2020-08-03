@@ -137,6 +137,14 @@
     <Compile Include="Migrations\202005200803121_menuaddsubitem.designer.cs">
       <DependentUpon>202005200803121_menuaddsubitem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007220527536_updatemenuweightdatatype.cs" />
+    <Compile Include="Migrations\202007220527536_updatemenuweightdatatype.designer.cs">
+      <DependentUpon>202007220527536_updatemenuweightdatatype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007230801465_menuinfonotnull.cs" />
+    <Compile Include="Migrations\202007230801465_menuinfonotnull.designer.cs">
+      <DependentUpon>202007230801465_menuinfonotnull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -185,6 +193,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005200803121_menuaddsubitem.resx">
       <DependentUpon>202005200803121_menuaddsubitem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007220527536_updatemenuweightdatatype.resx">
+      <DependentUpon>202007220527536_updatemenuweightdatatype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007230801465_menuinfonotnull.resx">
+      <DependentUpon>202007230801465_menuinfonotnull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

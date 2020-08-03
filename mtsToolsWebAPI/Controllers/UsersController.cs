@@ -58,7 +58,7 @@ namespace mtsToolsWebAPI.Controllers
                     switch (userAccount.LoginPlatform)
                     {
                         case SoftPlatform.mtsToolCaliburn:
-                            jwtAuthInfo.ExpiryDateTime = DateTime.Now.AddHours(4).ToString(); break;
+                            jwtAuthInfo.ExpiryDateTime = DateTime.Now.AddHours(12).ToString(); break;
                         case SoftPlatform.mtsToolLoggerCenter:
                             jwtAuthInfo.ExpiryDateTime = DateTime.Now.AddHours(4).ToString(); break;
                         case SoftPlatform.mtsToolsSchedule:
@@ -73,10 +73,9 @@ namespace mtsToolsWebAPI.Controllers
                 return new WebAPIReponse(HttpStatusCode.NonAuthoritativeInformation, "Access Denied");
 
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-
-                throw;
+                return new WebAPIReponse(HttpStatusCode.PreconditionFailed, "Precondition Failed", exception.ToString());
             }
         }
     }

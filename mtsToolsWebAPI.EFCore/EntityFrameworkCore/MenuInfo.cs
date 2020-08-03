@@ -25,19 +25,29 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
         [Required]
         [StringLength(8)]
         public string SoftwareAlias { get; set; } // 所属软件
+        [Required]
         [StringLength(64)]
         public string MenuTitle { get; set; } // 默认显示菜单名称 通常保存中文
+        [Required]
         [StringLength(64)]
         public string MenuParentID { get; set; } // 菜单父级ID
+        [Required]
         [StringLength(32)]
         public string MenuGroup { get; set; } // 菜单组别
-        public int? MenuWeight { get; set; } // 菜单权重，用于排序，父类标签权重默认为0 最高，其他无权重，则按时间排序
+        [Required]
+        [StringLength(16)]
+        public string MenuWeight { get; set; } // 菜单权重，用于排序，父类标签权重默认为0 最高，其他无权重，则按时间排序
+        [Required]
         [StringLength(1024)]
         public string MenuComponent { get; set; } // 菜单对应成员, web -> URL /  winform -> componentID
+        [Required]
         public bool EnableMasterTemplate { get; set; } // 菜单启用主模板
+        [Required]
         public bool SubItemContainer { get; set; } // 包含子菜单
+        [Required]
         [StringLength(200)]
         public string MenuIcon { get; set; } // 图标名称
+        [Required]
         public DateTime? MenuCreateDate { get; set; } // 菜单创建时间
         [Required]
         [StringLength(5)]

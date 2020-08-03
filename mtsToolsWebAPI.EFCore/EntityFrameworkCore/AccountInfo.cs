@@ -38,6 +38,7 @@ namespace mtsToolsWebAPI.EFCore.EntityFrameworkCore
         public string IsService { get; set; } // 是否在职 0NU // 1SV
     }
 
+    
     public class AccountInfoMap: EntityTypeConfiguration<AccountInfo>
     {
         public AccountInfoMap()

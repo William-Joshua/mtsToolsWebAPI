@@ -1,4 +1,6 @@
-﻿using System;
+﻿using mtsToolsWebAPI.EFCore.EntityFrameworkCore;
+using mtsToolsWebAPI.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,8 @@ namespace mtsToolsWebAPI.IServices
 {
     public interface INavMenuService
     {
+        List<MenuInfo> GetUserPermissionMenus(UserNavMenuRequest userNavMenu);
+
+        NavMenuBar GenerateNavMenuTree(List<MenuInfo> menuInfos);
     }
 }

@@ -5,8 +5,10 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using mtsToolsWebAPI.ActionFilters;
+using mtsToolsWebAPI.EFCore.EntityFrameworkCore;
 using mtsToolsWebAPI.IServices;
 using mtsToolsWebAPI.Model;
+using Newtonsoft.Json;
 
 namespace mtsToolsWebAPI.Controllers
 {
@@ -32,17 +34,24 @@ namespace mtsToolsWebAPI.Controllers
         /// <returns></returns>
         [HttpPost]
         [JwtAuthFilter]
-        public WebAPIReponse GetNavMenuList(UserNavMenuRequest userNavMenu)
+        public WebAPIReponse GenNavMenuTree(UserNavMenuRequest userNavMenu)
         {
             try
             {
-                return new WebAPIReponse(HttpStatusCode.OK, "OK", "");
+                MenuInfo mtsMenuInfo = new MenuInfo();
 
+                var userNavMenuInfo = _navMenuService.GetUserPermissionMenus(userNavMenu);
+                if (userNavMenuInfo != null)
+                {
+                    NavMenuBar currNavMenuBar = _navMenuService.GenerateNavMenuTree(userNavMenuInfo);
+                    return new WebAPIReponse(HttpStatusCode.OK, "Success", currNavMenuBar);
+                }
+                return new WebAPIReponse(HttpStatusCode.InternalServerError, "Menu Not Found");
             }
-            catch (Exception)
+            catch (Exception exception)
             {
 
-                throw;
+                return new WebAPIReponse(HttpStatusCode.PreconditionFailed, "Precondition Failed", exception.ToString());
             }
         }
     }
